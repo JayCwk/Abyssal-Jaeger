@@ -15,11 +15,11 @@ PrefabInstance:
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: animationSprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: c9de7c06526633c4db72d5765712e4fb, type: 3}
+      objectReference: {fileID: 21300000, guid: b86aca66906d68549a14a092aba76a88, type: 3}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: animationSprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: b86aca66906d68549a14a092aba76a88, type: 3}
+      objectReference: {fileID: 21300000, guid: 540c250b73ac73d44a373ca78bb96b1a, type: 3}
     - target: {fileID: 2203908375077873048, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: m_Size.x
       value: 2
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: m_LocalScale.x

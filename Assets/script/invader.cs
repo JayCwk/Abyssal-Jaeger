@@ -30,4 +30,6 @@ public class invader : MonoBehaviour
 
         _spriteRender.sprite = this.animationSprites[_animationFrame];
     }
+
+   
 }
