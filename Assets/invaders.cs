@@ -8,7 +8,7 @@ public class invaders : MonoBehaviour
     public int rows = 11;
     public int columns = 5;
 
-    public float speed = 1f;
+    public float speed = 0.5f;
 
     private Vector3 _direc = Vector2.right;
     private void Awake()
