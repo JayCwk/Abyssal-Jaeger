@@ -169,7 +169,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.24169993, y: 2.9786415}
@@ -550,7 +550,7 @@ GameObject:
   m_Layer: 0
   m_Name: Invaders
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -568,13 +568,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 4482768248969986610, guid: e1e351a191ae71e4bb41c93a751284b0, type: 3}
-  - {fileID: 7948999653699199522, guid: 49b9317ad81f8dd4b8209e6cddbfc13e, type: 3}
   - {fileID: 4070241459959714849, guid: 8b823c2b253847b4ea24e1158eb5fbbd, type: 3}
+  - {fileID: 7948999653699199522, guid: 49b9317ad81f8dd4b8209e6cddbfc13e, type: 3}
   - {fileID: 3856871725442044823, guid: 8bc54604e93fa034c814ecd0702dded6, type: 3}
-  - {fileID: 4482768248969986610, guid: e1e351a191ae71e4bb41c93a751284b0, type: 3}
-  rows: 5
   columns: 5
-  speed: 0.5
+  speed: 5
 --- !u!4 &1061215090
 Transform:
   m_ObjectHideFlags: 0
@@ -583,7 +581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061215088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.47, z: 0}
+  m_LocalPosition: {x: 0, y: 3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

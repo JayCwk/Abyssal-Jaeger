@@ -5,71 +5,102 @@ using UnityEngine;
 public class invaders : MonoBehaviour
 {
     public invader[] prefabs;
-    public int rows = 11;
     public int columns = 5;
-
     public float speed = 0.5f;
 
-    private Vector3 _direc = Vector2.right;
-    private void Awake()
-    {
-      // spawn the mobs in row and column by calling those prefabs
-        for(int row = 0; row< rows; row++)
-        {
-            float width = 2.0f * (this.columns - 1);
-            float height = 2.0f * (this.rows - 1);
-            Vector2 centering = new Vector2(-width/2, -height/2);
-            Vector3 rowPos = new Vector3(centering.x,centering.y + (row*2.0f),0.0f);
+    private Vector3 _direction = Vector2.right;
+    private List<Transform> inVader = new List<Transform>();
+    private float screenWidth;
+    private float rowHeight = 2.0f;
+    private Vector3 initialRowPosition;
 
-            for (int column = 0; column < columns; column++)
-            {
-                invader inVader = Instantiate(this.prefabs[row], this.transform);
-                Vector3 pos = rowPos;
-                pos.x += column * 2.0f;
-                inVader.transform.position = pos;
-            }
-        }
+    private void Start()
+    {
+        SpawnInitialRow();
+        screenWidth = Screen.width * Camera.main.orthographicSize / Screen.height; // Calculate screen width based on screen size and orthographic size
     }
 
     private void Update()
     {
-        // spawn the mobs that moving to right
-        this.transform.position += _direc * this.speed * Time.deltaTime;
+        MoveInvaders();
+        CheckEdges();
+    }
 
-        // set the min and max of x coordinate point to let the mobs stop
+    private void SpawnInitialRow()
+    {
+        initialRowPosition = CalculateInitialRowPosition();
+        SpawnRow(initialRowPosition);
+    }
+
+    private void MoveInvaders()
+    {
+        transform.position += _direction * speed * Time.deltaTime;
+    }
+
+    private void CheckEdges()
+    {
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector2.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector2.right);
 
-        // spawn loop that detect left and right edge
-        foreach(Transform invader in this.transform)
+        if (_direction == Vector3.right && transform.position.x >= rightEdge.x)
         {
-            if(! invader.gameObject.activeInHierarchy)
-            {
-                continue;
-            }
-
-            // if move to max right coordinate x move downward by 1
-            if(_direc == Vector3.right && invader.position.x >= (rightEdge.x - 1.0f))
-            {
-                AdvanceRow();
-            }
-
-            else if (_direc == Vector3.left && invader.position.x <= (leftEdge.x + 1.0f))
-            {
-                AdvanceRow();
-            }
+            MoveAndSpawnNewRow(Vector3.left);
+        }
+        else if (_direction == Vector3.left && transform.position.x <= leftEdge.x)
+        {
+            MoveAndSpawnNewRow(Vector3.right);
         }
     }
 
-    //flip the direction of the mobs
-    void AdvanceRow()
+    private Vector3 CalculateInitialRowPosition()
     {
-        _direc *= -1.0f;
+        float width = 2.0f * (columns - 1);
+        float height = 2.0f * (1);
+        Vector2 centering = new Vector2(-width / 2, -height / 2);
+        return new Vector3(centering.x, centering.y, 0.0f);
+    }
 
-        Vector3 pos = transform.position;
+    private void MoveAndSpawnNewRow(Vector3 newDirection)
+    {
+        _direction = newDirection;
+        MoveDown();
+        Vector3 newPosition = inVader[inVader.Count - columns].position + new Vector3(0.0f, rowHeight, 0.0f);
+        SpawnRow(newPosition);
+    }
 
-        pos.y -= 1.0f;
+    private void MoveDown()
+    {
+        foreach (Transform inv in inVader)
+        {
+            Vector3 pos = inv.position;
+            pos.y -= rowHeight;
+            inv.position = pos;
+        }
+    }
 
-        this.transform.position = pos;
+    private void SpawnRow(Vector3 position)
+    {
+        for (int column = 0; column < columns; column++)
+        {
+            Vector3 spawnPosition = position + new Vector3(column * 2.0f, 0.0f, 0.0f);
+
+            // Check if there's already an invader at the spawn position
+            bool spawnPositionOccupied = false;
+            foreach (Transform inv in inVader)
+            {
+                if (Vector3.Distance(inv.position, spawnPosition) < 0.01f)
+                {
+                    spawnPositionOccupied = true;
+                    break;
+                }
+            }
+
+            // If the spawn position is not occupied, spawn the invader
+            if (!spawnPositionOccupied)
+            {
+                invader inv = Instantiate(prefabs[Random.Range(0, prefabs.Length)], spawnPosition, Quaternion.identity, transform);
+                inVader.Add(inv.transform);
+            }
+        }
     }
 }
