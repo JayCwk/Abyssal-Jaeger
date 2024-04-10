@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class invaders : MonoBehaviour
+public class Invaders : MonoBehaviour
 {
-    public invader[] prefabs;
-    public int columns = 5;
+    public Invader[] prefabs;
+    public int columns = 4;
     public float speed = 0.5f;
+    public Transform bottomBoundary;
     public Transform leftBoundary;
     public Transform rightBoundary;
 
-    private Vector3 _direction = Vector2.right;
-    private List<Transform> inVader = new List<Transform>();
+    private Vector3 _direction = Vector3.right;
+    private List<Invader> invaders = new List<Invader>();
     private float rowHeight = 2.0f;
     private bool moveDown = false;
 
@@ -20,57 +21,66 @@ public class invaders : MonoBehaviour
         SpawnInitialRow();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         MoveInvaders();
-        CheckEdges();
     }
 
     private void SpawnInitialRow()
     {
-        Vector3 initialRowPosition = CalculateInitialRowPosition();
-        SpawnRow(initialRowPosition);
+        if (prefabs != null && prefabs.Length > 0)
+        {
+            Vector3 initialRowPosition = CalculateInitialRowPosition();
+            SpawnRow(initialRowPosition);
+        }
+        else
+        {
+            Debug.LogError("No invader prefabs assigned!");
+        }
     }
 
     private void MoveInvaders()
     {
-        transform.position += _direction * speed * Time.deltaTime;
+        // Calculate the distance to the left and right edges of the screen
+        float leftEdge = leftBoundary.position.x;
+        float rightEdge = rightBoundary.position.x;
 
+        // Calculate the position of the leftmost and rightmost invaders
+        float leftmostInvaderX = float.MaxValue;
+        float rightmostInvaderX = float.MinValue;
+        foreach (Invader inv in invaders)
+        {
+            float invaderX = inv.transform.position.x;
+            if (invaderX < leftmostInvaderX)
+            {
+                leftmostInvaderX = invaderX;
+            }
+            if (invaderX > rightmostInvaderX)
+            {
+                rightmostInvaderX = invaderX;
+            }
+        }
 
+        // Check if invaders are about to move out of the screen
+        if (leftmostInvaderX <= leftEdge && _direction == Vector3.left)
+        {
+            _direction = Vector3.right; // Change direction to right
+            moveDown = true; // Trigger move down
+        }
+        else if (rightmostInvaderX >= rightEdge && _direction == Vector3.right)
+        {
+            _direction = Vector3.left; // Change direction to left
+            moveDown = true; // Trigger move down
+        }
+
+        // Move invaders horizontally
+        transform.position += _direction * speed * Time.fixedDeltaTime;
+
+        // Move invaders down if necessary
         if (moveDown)
         {
             MoveDown();
             moveDown = false; // Reset moveDown after moving down
-            Vector3 newPosition = inVader[inVader.Count - columns].position + new Vector3(0.0f, rowHeight, 0.0f);
-            SpawnRow(newPosition);
-        }
-    }
-
-    private void CheckEdges()
-    {
-        bool invaderTriggeredMoveDown = false; // Flag to track if any invader has triggered move down
-
-        foreach (Transform inv in inVader)
-        {
-            if (inv.position.x <= leftBoundary.position.x || inv.position.x >= rightBoundary.position.x)
-            {
-                // Check if the invader's position is within the descent range of the left or right boundary
-                if ((inv.position.x <= leftBoundary.position.x && _direction == Vector3.left) ||
-                   (inv.position.x >= rightBoundary.position.x && _direction == Vector3.right) //||
-                   //(inv.position.x <= leftBoundary.position.x && _direction == Vector3.right) ||
-                   //(inv.position.x >= rightBoundary.position.x && _direction == Vector3.left)
-                   )
-                {
-                    if (!invaderTriggeredMoveDown) // Check if move down has not been triggered yet
-                    {
-                        moveDown = true; // Move down if the invader is within the descent range
-                        invaderTriggeredMoveDown = true; // Set the flag to true
-                    }
-                }
-
-                _direction *= -1; // Change direction
-                break;
-            }
         }
     }
 
@@ -84,16 +94,26 @@ public class invaders : MonoBehaviour
 
     private void MoveDown()
     {
-        // Calculate the distance each invader should move down
-        float distanceToMove = rowHeight;
-
-        // Move each invader down by the calculated distance
-        foreach (Transform inv in inVader)
+        // Move all invaders down by the row height
+        foreach (Invader inv in invaders)
         {
-            Vector3 pos = inv.position;
-            pos.y -= distanceToMove;
-            inv.position = pos;
+            Vector3 pos = inv.transform.position;
+            pos.y -= rowHeight;
+            inv.transform.position = pos;
+
+            // Disable invader if it's below the bottom boundary
+            if (pos.y < bottomBoundary.position.y)
+            {
+                inv.gameObject.SetActive(false);
+            }
         }
+
+        // Remove disabled invaders from the list
+        invaders.RemoveAll(inv => !inv.gameObject.activeSelf);
+
+        // Spawn a new row of invaders
+        Vector3 newPosition = invaders[invaders.Count - columns].transform.position + new Vector3(0.0f, rowHeight, 0.0f);
+        SpawnRow(newPosition);
     }
 
     private void SpawnRow(Vector3 position)
@@ -101,8 +121,16 @@ public class invaders : MonoBehaviour
         for (int column = 0; column < columns; column++)
         {
             Vector3 spawnPosition = position + new Vector3(column * 2.0f, 0.0f, 0.0f);
-            invader inv = Instantiate(prefabs[Random.Range(0, prefabs.Length)], spawnPosition, Quaternion.identity, transform);
-            inVader.Add(inv.transform);
+            Invader inv;
+            if (prefabs != null && prefabs.Length > 0)
+            {
+                inv = Instantiate(prefabs[Random.Range(0, prefabs.Length)], spawnPosition, Quaternion.identity, transform);
+                invaders.Add(inv);
+            }
+            else
+            {
+                Debug.LogError("No invader prefabs assigned!");
+            }
         }
     }
 }

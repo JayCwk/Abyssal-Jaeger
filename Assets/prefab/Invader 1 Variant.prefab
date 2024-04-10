@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: animationSprites.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2426276399852824703, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2426276399852824703, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -90,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: m_LocalScale.x

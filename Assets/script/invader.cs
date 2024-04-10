@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class invader : MonoBehaviour
+public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites;
     public float animationTime = 1.0f;
     private SpriteRenderer _spriteRender;
     private int _animationFrame;
+
+    public float speed = 2f;
+
 
     private void Awake()
     {
