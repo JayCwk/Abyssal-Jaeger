@@ -15,7 +15,7 @@ public class Invaders : MonoBehaviour
     private List<Invader> invaders = new List<Invader>();
     private float rowHeight = 2.0f;
     private bool moveDown = false;
-    private float fixedYPosition = 7.0f;
+    private float fixedYPosition = 5.0f;
 
     private void Start()
     {
