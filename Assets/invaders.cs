@@ -15,6 +15,7 @@ public class Invaders : MonoBehaviour
     private List<Invader> invaders = new List<Invader>();
     private float rowHeight = 2.0f;
     private bool moveDown = false;
+    private float fixedYPosition = 7.0f;
 
     private void Start()
     {
@@ -30,7 +31,7 @@ public class Invaders : MonoBehaviour
     {
         if (prefabs != null && prefabs.Length > 0)
         {
-            Vector3 initialRowPosition = CalculateInitialRowPosition();
+            Vector3 initialRowPosition = CalculateInitialRowPosition(fixedYPosition);
             SpawnRow(initialRowPosition);
         }
         else
@@ -84,12 +85,12 @@ public class Invaders : MonoBehaviour
         }
     }
 
-    private Vector3 CalculateInitialRowPosition()
+    private Vector3 CalculateInitialRowPosition(float yPosition)
     {
         float width = 2.0f * (columns - 1);
         float height = 2.0f * (1);
         Vector2 centering = new Vector2(-width / 2, -height / 2);
-        return new Vector3(centering.x, centering.y, 0.0f);
+        return new Vector3(centering.x, yPosition, 0.0f);
     }
 
     private void MoveDown()
