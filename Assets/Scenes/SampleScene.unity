@@ -389,7 +389,7 @@ MonoBehaviour:
   shootForce: 10
   shipSprite: {fileID: 398105434}
   ship1: {fileID: 21300000, guid: 89552c3fa1f995c41b34b6194ae6574b, type: 3}
-  ship2: {fileID: 21300000, guid: 87123e8b2da72424eb6b6115ef253343, type: 3}
+  ship2: {fileID: 21300000, guid: 23cee3e0799f8ec44815d42db6760404, type: 3}
 --- !u!50 &398105437
 Rigidbody2D:
   serializedVersion: 4
