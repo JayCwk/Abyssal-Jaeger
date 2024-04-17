@@ -6,6 +6,8 @@ TagManager:
   tags:
   - LeftBoundary
   - RightBoundary
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,10 +17,10 @@ TagManager:
   - UI
   - LeftBoundary
   - RightBoundary
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Bullet
+  - Missile
   - 
   - 
   - 

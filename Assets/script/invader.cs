@@ -11,6 +11,7 @@ public class Invader : MonoBehaviour
 
     public float speed = 2f;
 
+    public System.Action killed;
 
     private void Awake()
     {
@@ -34,5 +35,12 @@ public class Invader : MonoBehaviour
         _spriteRender.sprite = this.animationSprites[_animationFrame];
     }
 
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        {
+            this.killed.Invoke();
+            this.gameObject.SetActive(false);
+        }
+    }
 }

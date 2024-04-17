@@ -49,18 +49,30 @@ public class Invaders : MonoBehaviour
         // Calculate the position of the leftmost and rightmost invaders
         float leftmostInvaderX = float.MaxValue;
         float rightmostInvaderX = float.MinValue;
+
+        // List to store active invaders
+        List<Invader> activeInvaders = new List<Invader>();
+
         foreach (Invader inv in invaders)
         {
-            float invaderX = inv.transform.position.x;
-            if (invaderX < leftmostInvaderX)
+            // Check if invader is null (destroyed)
+            if (inv != null)
             {
-                leftmostInvaderX = invaderX;
-            }
-            if (invaderX > rightmostInvaderX)
-            {
-                rightmostInvaderX = invaderX;
+                float invaderX = inv.transform.position.x;
+                if (invaderX < leftmostInvaderX)
+                {
+                    leftmostInvaderX = invaderX;
+                }
+                if (invaderX > rightmostInvaderX)
+                {
+                    rightmostInvaderX = invaderX;
+                }
+                activeInvaders.Add(inv); // Add active invader to the list
             }
         }
+
+        // Replace the invaders list with the active invaders list
+        invaders = activeInvaders;
 
         // Check if invaders are about to move out of the screen
         if (leftmostInvaderX <= leftEdge && _direction == Vector3.left)
@@ -95,9 +107,14 @@ public class Invaders : MonoBehaviour
 
     private void MoveDown()
     {
+        // If there are no invaders left, exit the method
+        if (invaders.Count == 0) return;
+
         // Move all invaders down by the row height
         foreach (Invader inv in invaders)
         {
+            if (inv == null) continue; // Skip null invaders
+
             Vector3 pos = inv.transform.position;
             pos.y -= rowHeight;
             inv.transform.position = pos;
@@ -109,12 +126,21 @@ public class Invaders : MonoBehaviour
             }
         }
 
-        // Remove disabled invaders from the list
-        invaders.RemoveAll(inv => !inv.gameObject.activeSelf);
+        // Remove destroyed invaders from the list
+        invaders.RemoveAll(inv => inv == null);
 
-        // Spawn a new row of invaders
-        Vector3 newPosition = invaders[invaders.Count - columns].transform.position + new Vector3(0.0f, rowHeight, 0.0f);
-        SpawnRow(newPosition);
+        // If there are still invaders in the current row, spawn a new row below it
+        if (invaders.Count > 0)
+        {
+            int rowCount = Mathf.CeilToInt((float)invaders.Count / (float)columns); // Calculate the number of rows
+
+            // Check if the last row has enough invaders to spawn a new row below
+            if (invaders.Count >= columns)
+            {
+                Vector3 newPosition = invaders[invaders.Count - columns].transform.position + new Vector3(0.0f, rowHeight, 0.0f);
+                SpawnRow(newPosition);
+            }
+        }
     }
 
     private void SpawnRow(Vector3 position)
@@ -125,13 +151,21 @@ public class Invaders : MonoBehaviour
             Invader inv;
             if (prefabs != null && prefabs.Length > 0)
             {
-                inv = Instantiate(prefabs[Random.Range(0, prefabs.Length)], spawnPosition, Quaternion.identity, transform);
+                // Instantiate prefabs dynamically
+                GameObject prefabToInstantiate = prefabs[Random.Range(0, prefabs.Length)].gameObject;
+                inv = Instantiate(prefabToInstantiate, spawnPosition, Quaternion.identity, transform).GetComponent<Invader>();
                 invaders.Add(inv);
+                inv.killed += InvaderKilled;
             }
             else
             {
                 Debug.LogError("No invader prefabs assigned!");
             }
         }
+    }
+
+    void InvaderKilled()
+    {
+        
     }
 }
