@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2203908375077873048}
   - component: {fileID: 2426276399852824703}
   - component: {fileID: -2559110997842711737}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Invader Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0005220175, y: -0.13278484}
@@ -145,3 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSprites: []
   animationTime: 0.5
+  speed: 2
+  invaderHealth: 0600000008000000090000000a000000

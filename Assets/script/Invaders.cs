@@ -155,7 +155,7 @@ public class Invaders : MonoBehaviour
                 GameObject prefabToInstantiate = prefabs[Random.Range(0, prefabs.Length)].gameObject;
                 inv = Instantiate(prefabToInstantiate, spawnPosition, Quaternion.identity, transform).GetComponent<Invader>();
                 invaders.Add(inv);
-                inv.killed += InvaderKilled;
+                
             }
             else
             {
@@ -164,8 +164,5 @@ public class Invaders : MonoBehaviour
         }
     }
 
-    void InvaderKilled()
-    {
-        
-    }
+   
 }

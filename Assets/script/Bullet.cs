@@ -6,8 +6,10 @@ public class Bullet : MonoBehaviour
 {
     public Vector3 direction = Vector3.up;
     public float speed = 20f;
+    public int Damage = 1;
 
-    public System.Action destroyed;
+    private bool hasCollided = false; // Flag to track if the bullet has collided with an enemy
+
     private void Update()
     {
         transform.position += speed * Time.deltaTime * direction;
@@ -15,8 +17,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        this.destroyed.Invoke();
-        Destroy(this.gameObject);
-    }
+        if (!hasCollided && other.CompareTag("Enemy"))
+        {
+            // Set the flag to true to prevent further collisions
+            hasCollided = true;
 
+            // Destroy the game object after colliding with one enemy
+            Destroy(gameObject);
+        }
+    }
 }
+
+

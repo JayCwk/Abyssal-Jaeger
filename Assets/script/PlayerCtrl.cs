@@ -11,7 +11,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public GameObject projectilePrefab;
     public Transform shootPoint;
-    public float shootInterval = 1f; // Adjust this to change the time between shots
+    public float shootInterval = 0.3f; // Adjust this to change the time between shots
     public float shootForce = 10f;
 
 
@@ -35,6 +35,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         rb.velocity = new Vector2(dirX, 0f);
     }
+
 
     void Shoot()
     {
