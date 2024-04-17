@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!hasCollided && other.CompareTag("Enemy")|| other.CompareTag("Boss"))
+        if (!hasCollided && other.CompareTag("Enemy")|| other.CompareTag("Boss")|| other.CompareTag("Variant"))
         {
             // Set the flag to true to prevent further collisions
             hasCollided = true;
