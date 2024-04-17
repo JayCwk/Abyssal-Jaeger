@@ -8,6 +8,7 @@ TagManager:
   - RightBoundary
   - Bullet
   - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - Bullet
   - Missile
-  - 
+  - Boss
   - 
   - 
   - 
