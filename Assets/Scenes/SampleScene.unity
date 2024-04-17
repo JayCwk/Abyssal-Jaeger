@@ -956,7 +956,7 @@ MonoBehaviour:
   - {fileID: 7948999653699199522, guid: 49b9317ad81f8dd4b8209e6cddbfc13e, type: 3}
   - {fileID: 3856871725442044823, guid: 8bc54604e93fa034c814ecd0702dded6, type: 3}
   columns: 5
-  speed: 0.5
+  speed: 0.2
   bottomBoundary: {fileID: 1716065181}
   leftBoundary: {fileID: 255097581}
   rightBoundary: {fileID: 780059906}
