@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet1 : MonoBehaviour
 {
     public Vector3 direction = Vector3.up;
     public float speed = 20f;
@@ -17,7 +17,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!hasCollided && other.CompareTag("Enemy")|| other.CompareTag("Boss"))
+       
+        if (!hasCollided && other.CompareTag("Variant") || other.CompareTag("Boss"))
         {
             // Set the flag to true to prevent further collisions
             hasCollided = true;
@@ -25,8 +26,6 @@ public class Bullet : MonoBehaviour
             // Destroy the game object after colliding with one enemy
             Destroy(gameObject);
         }
-
     }
 }
-
 

@@ -10,6 +10,7 @@ public class PlayerCtrl : MonoBehaviour
     float moveSpeed = 20f;
 
     public GameObject projectilePrefab;
+    public GameObject projectile1Prefab;
     public Transform shootPoint;
     public float shootInterval = 0.3f; // Adjust this to change the time between shots
     public float shootForce = 10f;
@@ -66,14 +67,17 @@ public class PlayerCtrl : MonoBehaviour
 
     void Shoot()
     {
-        GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
-        
+        GameObject projectilePrefabToUse = activeShip == ship1 ? projectilePrefab : projectile1Prefab;
+
+        GameObject projectile = Instantiate(projectilePrefabToUse, shootPoint.position, shootPoint.rotation);
+      
+
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.velocity = shootPoint.up * shootForce; // Shoot in the direction the shootPoint is facing
         }
-        // Add any additional logic or effects here
+        
     }
 
     void ChangeSprite(Sprite sprite)
