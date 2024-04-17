@@ -387,6 +387,9 @@ MonoBehaviour:
   shootPoint: {fileID: 1560115490}
   shootInterval: 1
   shootForce: 10
+  shipSprite: {fileID: 398105434}
+  ship1: {fileID: 21300000, guid: 89552c3fa1f995c41b34b6194ae6574b, type: 3}
+  ship2: {fileID: 21300000, guid: 87123e8b2da72424eb6b6115ef253343, type: 3}
 --- !u!50 &398105437
 Rigidbody2D:
   serializedVersion: 4
