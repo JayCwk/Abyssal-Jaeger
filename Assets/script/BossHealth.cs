@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
-    [SerializeField] private int currentHealth = 100;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private int startingHealth = 100;
     [SerializeField] private SpriteRenderer spriteRenderer;
     public Sprite[] animationSprites;
+    public Transform[] shootingPoints;
+    public GameObject beamPrefab1;
+    public GameObject beamPrefab2;
+    public float fixedTimeIntervals = 3f;
+    public System.Action killed;
 
     private void Start()
     {
@@ -15,74 +21,95 @@ public class BossHealth : MonoBehaviour
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
+        startingHealth = currentHealth;
+        // Start shooting beams
+        StartCoroutine(ShootBeams());
     }
 
-    // Handle damage when colliding with objects
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Coroutine to shoot beams from random shooting points
+    private IEnumerator ShootBeams()
     {
-        // Check if collided with a bullet
-        if (collision.CompareTag("Bullet"))
+        while (true)
         {
-            // Get the bullet component
-            Bullet bullet = collision.GetComponent<Bullet>();
+            // Randomly select a shooting point
+            Transform shootingPoint = shootingPoints[Random.Range(0, shootingPoints.Length)];
 
-            // Check if the bullet component exists
-            if (bullet != null)
-            {
-                // Apply damage to the health
-                currentHealth -= bullet.Damage;
+            // Set the shooting animation frame only when shooting
+            SetShootingAnimationFrame(true);
 
-                // Update animation frame based on health
-                UpdateAnimationFrame();
+            // Wait for a short duration to indicate the shooting action
+            yield return new WaitForSeconds(0.5f);
+            // Randomly select a beam type
+            GameObject beamPrefabToUse = Random.Range(0, 2) == 0 ? beamPrefab1 : beamPrefab2;
 
-                // Check if health is zero or less
-                if (currentHealth <= 0)
-                {
-                    Die(); // Die if health reaches zero or less
-                }
-            }
+            // Instantiate the selected beam prefab at the shooting point position and rotation
+            GameObject beam = Instantiate(beamPrefabToUse, shootingPoint.position, Quaternion.identity);
+
+            // Rotate the beam to point downwards (along the negative Y-axis)
+            beam.transform.rotation = Quaternion.Euler(0f, 0f, -180f);
+
+            // Update the animation frame based on current health
+            UpdateAnimationFrame();
+
+            // Wait for the fixed time interval between shots
+            yield return new WaitForSeconds(fixedTimeIntervals);
+
+            // Reset the shooting animation frame after shooting
+            SetShootingAnimationFrame(false);
+        }
+    }
+
+    // Set the animation frame for shooting state
+    private void SetShootingAnimationFrame(bool isShooting)
+    {
+        // Set the sprite for shooting state
+        if (isShooting)
+        {
+            spriteRenderer.sprite = animationSprites[5]; // Assuming the shooting sprite is at index 5
+        }
+        else
+        {
+            // Set the sprite based on the health status
+            UpdateAnimationFrame();
         }
     }
 
     // Update animation frame based on current health
     private void UpdateAnimationFrame()
     {
-        float healthPercentage = (float)currentHealth / 100f;
-        if (healthPercentage == 1.00f )
-        {
-            // Update animation frame for 100% health
-            spriteRenderer.sprite = animationSprites[0];
-        }
-
-        if (healthPercentage <= 0.75f && healthPercentage > 0.5f)
-        {
-            // Update animation frame for 75% health
-            spriteRenderer.sprite = animationSprites[1];
-        }
-        else if (healthPercentage <= 0.5f && healthPercentage > 0.25f)
-        {
-            // Update animation frame for 50% health
-            spriteRenderer.sprite = animationSprites[2];
-        }
-        else if (healthPercentage <= 0.25f)
-        {
-            // Update animation frame for 25% health
-            spriteRenderer.sprite = animationSprites[3];
-        }
-        else if (healthPercentage <= 0.15f)
-        {
-            // Update animation frame for 15% health
-            spriteRenderer.sprite = animationSprites[4];
-        }
-
-        // No need to check for 0% health because the Die method will handle it
+        float healthPercentage = (float)currentHealth / startingHealth;
+        int currentSpriteIndex = GetAnimationFrameIndex(healthPercentage);
+        spriteRenderer.sprite = animationSprites[currentSpriteIndex];
     }
 
-    // Die function to deactivate game object
+    // Get the index of the current animation frame based on health percentage
+    private int GetAnimationFrameIndex(float healthPercentage)
+    {
+        if (healthPercentage >= 0.75f) return 0;
+        else if (healthPercentage >= 0.5f) return 1;
+        else if (healthPercentage >= 0.25f) return 2;
+        else if (healthPercentage >= 0.15f) return 3;
+        else return 4;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet1") || collision.CompareTag("Bullet"))
+        {
+            Bullet1 bullet1 = collision.GetComponent<Bullet1>();
+            Bullet bullet = collision.GetComponent<Bullet>();
+            if (bullet != null || bullet1 != null)
+            {
+                currentHealth -= bullet != null ? bullet.Damage : bullet1.Damage;
+                if (currentHealth <= 0) Die();
+                else UpdateAnimationFrame();
+            }
+        }
+    }
+
     private void Die()
     {
-        
-        // Deactivate the GameObject or perform other actions
+        killed?.Invoke();
         gameObject.SetActive(false);
     }
 }

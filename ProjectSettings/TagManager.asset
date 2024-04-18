@@ -11,6 +11,9 @@ TagManager:
   - Boss
   - Variant
   - Bullet1
+  - Missile
+  - BottomBoundary
+  - TopBoundary
   layers:
   - Default
   - TransparentFX

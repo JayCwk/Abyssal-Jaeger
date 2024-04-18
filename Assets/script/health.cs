@@ -18,7 +18,7 @@ public class health : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if collided with a bullet
-        if (collision.CompareTag("Bullet"))
+        if (collision.CompareTag("Bullet") || collision.CompareTag("Bullet1"))
         {
             // Get the bullet component
             Bullet bullet = collision.GetComponent<Bullet>();

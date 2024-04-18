@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet1 : MonoBehaviour
+public class Missiles : MonoBehaviour
 {
-    public Vector3 direction = Vector3.up;
+    public Vector3 direction = Vector3.down;
     public float speed = 20f;
     public int Damage = 1;
 
@@ -17,8 +17,7 @@ public class Bullet1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-       
-        if (!hasCollided && other.CompareTag("Variant") || other.CompareTag("Boss")|| other.CompareTag("Enemy")|| other.CompareTag("TopBoundary"))
+        if (!hasCollided && other.CompareTag("Player") || other.CompareTag("BottomBoundary"))
         {
             // Set the flag to true to prevent further collisions
             hasCollided = true;
@@ -26,6 +25,7 @@ public class Bullet1 : MonoBehaviour
             // Destroy the game object after colliding with one enemy
             Destroy(gameObject);
         }
+
     }
 }
 
