@@ -308,7 +308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391668925}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.16, y: -3.33, z: 0}
+  m_LocalPosition: {x: 4.13, y: -3.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -695,7 +695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629763230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.09, y: -3.33, z: 0}
+  m_LocalPosition: {x: -3.82, y: -3.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -782,7 +782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670471371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.24, z: 1}
+  m_LocalPosition: {x: 0, y: 10.37, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1019,10 +1019,8 @@ MonoBehaviour:
   - {fileID: 2026659718}
   - {fileID: 391668926}
   beamPrefab1: {fileID: 5889221434120743323, guid: 148c35bd6cf61f548b1b61193bf5b14e, type: 3}
-  beamPrefab2: {fileID: 6080321860844606920, guid: 3e24aed0b6a171e4694f78e5815bd383, type: 3}
-  minTimeBetweenShots: 1
-  maxTimeBetweenShots: 3
-  isShooting: 0
+  beamPrefab2: {fileID: 6633391826789268253, guid: e72ef9b75c03a914f85aa2bcd4a05602, type: 3}
+  fixedTimeIntervals: 3
 --- !u!1 &780059904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1142,7 @@ GameObject:
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1061215089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,7 +1312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026659717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.33, z: 0}
+  m_LocalPosition: {x: 0, y: -3.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

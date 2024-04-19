@@ -23,6 +23,8 @@ public class PlayerCtrl : MonoBehaviour
     public Sprite[] ship2;
     private Sprite[] activeShip;
 
+    private bool isAlive = true; // Flag to track if the player is alive or not
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -62,12 +64,16 @@ public class PlayerCtrl : MonoBehaviour
         }
 
         // Update sprites based on current shared health
-        shipSprite.sprite = activeShip[StartingsharedHealth - CurrentsharedHealth];
+        if (isAlive) 
+        {
+            shipSprite.sprite = activeShip[StartingsharedHealth - CurrentsharedHealth];
+        }
+            
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Missile"))
+        if (isAlive && collision.CompareTag("Missile"))
         {
             // Get the bullet component
             Missiles bullet = collision.GetComponent<Missiles>();
@@ -89,6 +95,8 @@ public class PlayerCtrl : MonoBehaviour
 
     private void Die()
     {
+        isAlive = false;
+
         // Deactivate the GameObject
         gameObject.SetActive(false);
     }
@@ -101,6 +109,11 @@ public class PlayerCtrl : MonoBehaviour
 
     void Shoot()
     {
+        if(!isAlive)
+        {
+            return;
+        }
+        
         GameObject projectilePrefabToUse = activeShip == ship1 ? projectilePrefab : projectile1Prefab;
 
         GameObject projectile = Instantiate(projectilePrefabToUse, shootPoint.position, shootPoint.rotation);
