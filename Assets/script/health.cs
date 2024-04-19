@@ -36,8 +36,6 @@ public class health : MonoBehaviour
                 }
             }
         }
-
-        
     }
 
     // Die function to deactivate game object

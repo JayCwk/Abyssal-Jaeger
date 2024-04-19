@@ -34,7 +34,7 @@ public class PlayerCtrl : MonoBehaviour
         CurrentsharedHealth = StartingsharedHealth;
 
         // Start shooting automatically when the object is enabled
-        InvokeRepeating("Shoot", 0f, shootInterval);
+        InvokeRepeating("Shoot", 1f, shootInterval);
     }
 
 

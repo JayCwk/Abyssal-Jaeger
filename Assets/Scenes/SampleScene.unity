@@ -1019,8 +1019,8 @@ MonoBehaviour:
   - {fileID: 2026659718}
   - {fileID: 391668926}
   beamPrefab1: {fileID: 5889221434120743323, guid: 148c35bd6cf61f548b1b61193bf5b14e, type: 3}
-  beamPrefab2: {fileID: 6633391826789268253, guid: e72ef9b75c03a914f85aa2bcd4a05602, type: 3}
-  fixedTimeIntervals: 3
+  beamPrefab2: {fileID: 6080321860844606920, guid: 3e24aed0b6a171e4694f78e5815bd383, type: 3}
+  fixedTimeIntervals: 7
 --- !u!1 &780059904
 GameObject:
   m_ObjectHideFlags: 0

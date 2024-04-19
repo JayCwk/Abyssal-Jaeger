@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &184088715098044687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5099675347309544509}
+  m_Layer: 9
+  m_Name: shoot
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5099675347309544509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184088715098044687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.783, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6018022872938243132}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7636533204940404944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12,6 +43,22 @@ PrefabInstance:
       propertyPath: baseHealth
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: shootForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: shootPoint
+      value: 
+      objectReference: {fileID: 5099675347309544509}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: shootInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 9018146163093163696, guid: 5bfd2d08113f5164bb162774b93de9f8, type: 3}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: animationSprites.Array.size
       value: 3
@@ -157,6 +204,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8205332069888541229, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205332069888541229, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: m_Name
       value: type4
       objectReference: {fileID: 0}
@@ -170,7 +221,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5099675347309544509}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8205332069888541229, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       insertIndex: -1
@@ -195,3 +249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   startingHealth: 3
+--- !u!4 &6018022872938243132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+  m_PrefabInstance: {fileID: 7636533204940404944}
+  m_PrefabAsset: {fileID: 0}

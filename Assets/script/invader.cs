@@ -11,28 +11,64 @@ public class Invader : MonoBehaviour
 
     public float speed = 2f;
 
-    
+    public GameObject projectilePrefab;
+    public Transform shootPoint;
+    public float shootInterval = 0.3f; // Adjust this to change the time between shots
+    public float shootForce = 10f;
+
+    private bool isAlive = true; // Flag to track if the invader is alive
+
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-       
     }
 
     private void Start()
     {
-        InvokeRepeating(nameof(AnimateSprite), this.animationTime, this.animationTime);
+        // Start shooting automatically when the object is enabled
+        InvokeRepeating(nameof(Shoot), 1f, shootInterval);
+        InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
+
+        // Subscribe to the Die method of the health script
+        GetComponent<health>().killed += OnKilled;
+    }
+
+    private void OnKilled()
+    {
+        // Stop shooting when the invader dies
+        CancelInvoke(nameof(Shoot));
     }
 
     private void AnimateSprite()
     {
-        _animationFrame++;
-        if (_animationFrame >= this.animationSprites.Length)
+        if (isAlive)
         {
-            _animationFrame = 0;
-        }
+            _animationFrame++;
+            if (_animationFrame >= animationSprites.Length)
+            {
+                _animationFrame = 0;
+            }
 
-        _spriteRenderer.sprite = this.animationSprites[_animationFrame];
+            _spriteRenderer.sprite = animationSprites[_animationFrame];
+        }
     }
 
-   
+    private void Shoot()
+    {
+        if (!isAlive)
+            return; // If the invader is not alive, stop shooting
+
+        GameObject beam = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+
+        // Rotate the beam to point downwards (along the negative Y-axis)
+        beam.transform.rotation = Quaternion.Euler(0f, 0f, -180f);
+    }
+
+    public void Die()
+    {
+        isAlive = false;
+
+        // Deactivate the GameObject
+        gameObject.SetActive(false);
+    }
 }
