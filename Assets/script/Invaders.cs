@@ -16,10 +16,27 @@ public class Invaders : MonoBehaviour
     private float rowHeight = 2.0f;
     private bool moveDown = false;
     private float fixedYPosition = 5.0f;
+    
 
     private void Start()
     {
         SpawnInitialRow();
+        // Start the coroutine to increase speed over time
+        StartCoroutine(IncreaseSpeedOverTime());
+    }
+    private IEnumerator IncreaseSpeedOverTime()
+    {
+        // Wait for 30 seconds before starting to increase speed
+        yield return new WaitForSeconds(30f);
+
+        while (true)
+        {
+            // Increase speed by 0.3
+            speed += 0.3f;
+
+            // Wait for the next 30 seconds
+            yield return new WaitForSeconds(30f);
+        }
     }
 
     private void FixedUpdate()

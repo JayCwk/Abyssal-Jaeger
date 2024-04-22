@@ -48,6 +48,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4923648172785521501}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: pointsWorth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 0}

@@ -52,6 +52,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4999605121770399523}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: pointsWorth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: shootInterval
       value: 2
       objectReference: {fileID: 0}

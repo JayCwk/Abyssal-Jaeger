@@ -11,6 +11,8 @@ public class Invader : MonoBehaviour
 
     public float speed = 2f;
 
+    public int pointsWorth ; // Points awarded for destroying this invader
+
     public GameObject projectilePrefab;
     public Transform shootPoint;
     public float shootInterval = 0.3f; // Adjust this to change the time between shots
@@ -37,6 +39,8 @@ public class Invader : MonoBehaviour
     {
         // Stop shooting when the invader dies
         CancelInvoke(nameof(Shoot));
+
+        GameManger.instance.UpdateScore(pointsWorth);
     }
 
     private void AnimateSprite()
