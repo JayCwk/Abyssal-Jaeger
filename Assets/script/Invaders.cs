@@ -16,7 +16,10 @@ public class Invaders : MonoBehaviour
     private float rowHeight = 2.0f;
     private bool moveDown = false;
     private float fixedYPosition = 5.0f;
+
     
+
+
 
     private void Start()
     {
@@ -41,9 +44,12 @@ public class Invaders : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveInvaders();
+        
+            MoveInvaders();
+        
     }
 
+  
     private void SpawnInitialRow()
     {
         if (prefabs != null && prefabs.Length > 0)

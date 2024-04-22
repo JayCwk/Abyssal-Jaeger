@@ -9,10 +9,10 @@ public class GameManger : MonoBehaviour
 {
     public static GameManger instance;
 
-    // Other variables...
-
-    private int score = 0;
+    public int score = 0;
     public TextMeshProUGUI scoreText;
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI finalScoreText;
 
     private void Awake()
     {
@@ -38,4 +38,6 @@ public class GameManger : MonoBehaviour
     {
         scoreText.text = "Score: " + score.ToString();
     }
+
+   
 }

@@ -20,6 +20,8 @@ public class Invader : MonoBehaviour
 
     private bool isAlive = true; // Flag to track if the invader is alive
 
+    
+
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,13 +29,17 @@ public class Invader : MonoBehaviour
 
     private void Start()
     {
-        // Start shooting automatically when the object is enabled
-        InvokeRepeating(nameof(Shoot), 1f, shootInterval);
-        InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
+       
+            // Start shooting automatically when the object is enabled
+            InvokeRepeating(nameof(Shoot), 1f, shootInterval);
+            InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
 
-        // Subscribe to the Die method of the health script
-        GetComponent<health>().killed += OnKilled;
+            // Subscribe to the Die method of the health script
+            GetComponent<health>().killed += OnKilled;
+        
     }
+
+  
 
     private void OnKilled()
     {
@@ -55,6 +61,14 @@ public class Invader : MonoBehaviour
 
             _spriteRenderer.sprite = animationSprites[_animationFrame];
         }
+    }
+    public void StopActions()
+    {
+        // Stop shooting
+        CancelInvoke(nameof(Shoot));
+
+        // Stop animation
+        CancelInvoke(nameof(AnimateSprite));
     }
 
     private void Shoot()

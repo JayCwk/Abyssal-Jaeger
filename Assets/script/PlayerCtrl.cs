@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -99,6 +100,7 @@ public class PlayerCtrl : MonoBehaviour
 
         // Deactivate the GameObject
         gameObject.SetActive(false);
+        SceneManager.LoadScene("GameOver");
     }
 
     private void FixedUpdate()

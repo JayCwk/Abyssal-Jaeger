@@ -14,8 +14,12 @@ public class BossHealth : MonoBehaviour
     public float fixedTimeIntervals = 3f;
     public System.Action killed;
 
+    private bool isGameActive = true;
+    private Coroutine shootingCoroutine;
+
     private void Start()
     {
+
         // Ensure sprite renderer is assigned
         if (spriteRenderer == null)
         {
@@ -23,9 +27,9 @@ public class BossHealth : MonoBehaviour
         }
         startingHealth = currentHealth;
         // Start shooting beams
-        StartCoroutine(ShootBeams());
-    }
+        shootingCoroutine = StartCoroutine(ShootBeams());
 
+    }
     // Coroutine to shoot beams from random shooting points
     private IEnumerator ShootBeams()
     {
