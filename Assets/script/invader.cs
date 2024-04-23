@@ -15,7 +15,7 @@ public class Invader : MonoBehaviour
 
     public GameObject projectilePrefab;
     public Transform shootPoint;
-    public float shootInterval = 0.3f; // Adjust this to change the time between shots
+    public float shootInterval = 10f; // Adjust this to change the time between shots
     public float shootForce = 10f;
 
     private bool isAlive = true; // Flag to track if the invader is alive
