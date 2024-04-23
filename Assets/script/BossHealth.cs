@@ -12,6 +12,9 @@ public class BossHealth : MonoBehaviour
     public GameObject beamPrefab1;
     public GameObject beamPrefab2;
     public float fixedTimeIntervals = 3f;
+    public int pointsWorth; // Points awarded for destroying this boss
+    public int pointsGet; // Points awarded for hitting this boss
+
     public System.Action killed;
 
     private bool isGameActive = true;
@@ -105,6 +108,7 @@ public class BossHealth : MonoBehaviour
             if (bullet != null || bullet1 != null)
             {
                 currentHealth -= bullet != null ? bullet.Damage : bullet1.Damage;
+                GameManger.instance.UpdateScore(pointsGet);
                 if (currentHealth <= 0) Die();
                 else UpdateAnimationFrame();
             }
@@ -115,5 +119,6 @@ public class BossHealth : MonoBehaviour
     {
         killed?.Invoke();
         gameObject.SetActive(false);
+        GameManger.instance.UpdateScore(pointsWorth);
     }
 }
