@@ -5,6 +5,7 @@ using UnityEngine;
 public class Invaders : MonoBehaviour
 {
     public Invader[] prefabs;
+    public Invader1[] prefab1;
     public int columns = 4;
     public float speed = 0.5f;
     public Transform bottomBoundary;

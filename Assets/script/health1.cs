@@ -18,16 +18,16 @@ public class health1 : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if collided with a bullet
-        if (collision.CompareTag("Bullet1"))
+        if (collision.CompareTag("Bullet") || collision.CompareTag("Bullet1")) 
         {
             // Get the bullet component
-            Bullet1 bullet = collision.GetComponent<Bullet1>();
+            Bullet1 bullets = collision.GetComponent<Bullet1>();
 
             // Check if the bullet component exists
-            if (bullet != null)
+            if (bullets != null)
             {
                 // Apply damage to the health
-                currentHealth -= bullet.Damage;
+                currentHealth -= bullets.Damage;
 
                 // Check if health is zero or less
                 if (currentHealth <= 0)

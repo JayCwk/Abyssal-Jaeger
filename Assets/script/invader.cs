@@ -34,9 +34,20 @@ public class Invader : MonoBehaviour
             InvokeRepeating(nameof(Shoot), 1f, shootInterval);
             InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
 
-            // Subscribe to the Die method of the health script
+        // Subscribe to the Die method of the appropriate health script based on the invader's type
+        if (GetComponent<health>() != null)
+        {
             GetComponent<health>().killed += OnKilled;
-        
+        }
+        else if (GetComponent<health1>() != null)
+        {
+            GetComponent<health1>().killed += OnKilled;
+        }
+        else
+        {
+            Debug.LogError("No health script found on the invader!");
+        }
+
     }
 
   
