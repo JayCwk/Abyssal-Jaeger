@@ -51,14 +51,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: background
+    uniqueID: 1202623763
+    locked: 0
   - name: Boss
     uniqueID: 1519939131
     locked: 0
+  - name: Projectile
+    uniqueID: 2480702297
+    locked: 0
   - name: Enemy
     uniqueID: 639390229
-    locked: 0
-  - name: background
-    uniqueID: 1202623763
     locked: 0
   - name: player
     uniqueID: 2036318015
