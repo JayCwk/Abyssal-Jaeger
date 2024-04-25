@@ -95,8 +95,21 @@ public class Invaders : MonoBehaviour
             }
         }
 
-        // Replace the invaders list with the active invaders list
-        invaders = activeInvaders;
+        // Calculate the minimum and maximum boundaries for camera movement
+        float minXBoundary = leftmostInvaderX - (Camera.main.aspect * Camera.main.orthographicSize);
+        float maxXBoundary = rightmostInvaderX + (Camera.main.aspect * Camera.main.orthographicSize);
+
+        // Update camera movement script with calculated boundaries
+        CameraMovement cameraMovementScript = Camera.main.GetComponent<CameraMovement>();
+        if (cameraMovementScript != null)
+        {
+            cameraMovementScript.SetBoundaries(minXBoundary, maxXBoundary);
+        }
+    
+
+
+    // Replace the invaders list with the active invaders list
+    invaders = activeInvaders;
 
         // Check if invaders are about to move out of the screen
         if (leftmostInvaderX <= leftEdge && _direction == Vector3.left)
