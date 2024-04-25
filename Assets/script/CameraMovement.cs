@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    private float minXBoundary;
-    private float maxXBoundary;
+    public float moveSpeed = 0.5f;
+    public float minX = -4.84f; // Define left boundary
+    public float maxX = 5.3f;  // Define right boundary
+
+    private Vector3 targetPosition;
 
     void Start()
     {
+        // Set initial target position to current position
+        targetPosition = transform.position;
+
         // Start the coroutine to increase speed over time
         StartCoroutine(IncreaseSpeedOverTime());
     }
@@ -17,20 +22,15 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         // Calculate new target position based on automatic movement
-        float newX = Mathf.PingPong(Time.time * moveSpeed, maxXBoundary - minXBoundary) + minXBoundary;
-        Vector3 targetPosition = new Vector3(newX, transform.position.y, transform.position.z);
+        float newX = Mathf.PingPong(Time.time * moveSpeed, maxX - minX) + minX;
+        targetPosition = new Vector3(newX, transform.position.y, transform.position.z);
+
+        // Apply boundary constraints
+        targetPosition.x = Mathf.Clamp(targetPosition.x, minX, maxX);
 
         // Smoothly move the camera towards the target position
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpeed);
     }
-
-    public void SetBoundaries(float minX, float maxX)
-    {
-        // Set the boundaries for camera movement
-        minXBoundary = minX;
-        maxXBoundary = maxX;
-    }
-
     private IEnumerator IncreaseSpeedOverTime()
     {
         // Wait for 30 seconds before starting to increase speed

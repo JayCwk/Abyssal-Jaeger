@@ -95,16 +95,9 @@ public class Invaders : MonoBehaviour
             }
         }
 
-        // Calculate the minimum and maximum boundaries for camera movement
-        float minXBoundary = leftmostInvaderX - (Camera.main.aspect * Camera.main.orthographicSize);
-        float maxXBoundary = rightmostInvaderX + (Camera.main.aspect * Camera.main.orthographicSize);
+      
 
-        // Update camera movement script with calculated boundaries
-        CameraMovement cameraMovementScript = Camera.main.GetComponent<CameraMovement>();
-        if (cameraMovementScript != null)
-        {
-            cameraMovementScript.SetBoundaries(minXBoundary, maxXBoundary);
-        }
+       
     
 
 
