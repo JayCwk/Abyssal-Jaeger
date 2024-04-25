@@ -44,7 +44,7 @@ public class PlayerCtrl : MonoBehaviour
         //player tilting movement
         dirX = Input.acceleration.x * moveSpeed;
         //set movement area
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -2f, 2f), transform.position.y);
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5.8f, 5.8f), transform.position.y);
 
         for (int i = 0; i < Input.touchCount; i++)
         {
