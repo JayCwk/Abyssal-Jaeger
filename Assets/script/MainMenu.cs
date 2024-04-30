@@ -13,6 +13,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(2);
     }
+    public void PlayCustomizationProfile()
+    {
+        SceneManager.LoadSceneAsync(3);
+    }
 
     public void QuitGame()
     {

@@ -10,5 +10,6 @@ public class ReplayButton : MonoBehaviour
     public void ReplayGame()
     {
         SceneManager.LoadScene(gameSceneName); // Load the game scene again
+        PlayerCtrl.ResetPlayerPrefs();
     }
 }

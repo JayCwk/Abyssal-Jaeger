@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 4999605121770399523}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: pointsWorth
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: shootInterval
@@ -63,6 +63,18 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 9018146163093163696, guid: 5bfd2d08113f5164bb162774b93de9f8, type: 3}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: buffPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: buffPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8473691978131351366, guid: 73fa19f7e2d24c04892e062392fcd856, type: 3}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: buffPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1003799834972666064, guid: 6689fe7fc9f7ca54fbde7babd78a5565, type: 3}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: animationSprites.Array.size
       value: 2
@@ -250,3 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   startingHealth: 1
+  bleedingEffectPrefab: {fileID: 0}
+  possibleBuffs: 01000000
+  buffPrefabs:
+  - {fileID: 8473691978131351366, guid: 73fa19f7e2d24c04892e062392fcd856, type: 3}

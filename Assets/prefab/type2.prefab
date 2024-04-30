@@ -56,6 +56,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: buffPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: possibleBuffs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: buffPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1003799834972666064, guid: 6689fe7fc9f7ca54fbde7babd78a5565, type: 3}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: animationSprites.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -241,6 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   startingHealth: 3
+  bleedingEffectPrefab: {fileID: 0}
 --- !u!4 &6809007812591952778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}

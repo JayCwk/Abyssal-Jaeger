@@ -9,9 +9,9 @@ public class Invader : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private int _animationFrame;
 
-    public float speed = 2f;
+    public float moveSpeed = 2f;
 
-    public int pointsWorth ; // Points awarded for destroying this invader
+    public int pointsWorth; // Points awarded for destroying this invader
 
     public GameObject projectilePrefab;
     public Transform shootPoint;
@@ -20,7 +20,19 @@ public class Invader : MonoBehaviour
 
     private bool isAlive = true; // Flag to track if the invader is alive
 
-    
+    private Transform bottomBoundary;
+    private Transform topBoundary;
+
+    // Buff system variables
+    public BuffSystem.BuffType[] possibleBuffs; // Array of possible buff types
+    public GameObject[] buffPrefabs; // Array of corresponding buff prefabs
+
+    // Method to set the boundaries
+    public void SetBoundaries(Transform bottomBoundary, Transform topBoundary)
+    {
+        this.bottomBoundary = bottomBoundary;
+        this.topBoundary = topBoundary;
+    }
 
     private void Awake()
     {
@@ -29,35 +41,9 @@ public class Invader : MonoBehaviour
 
     private void Start()
     {
-       
-            // Start shooting automatically when the object is enabled
-            InvokeRepeating(nameof(Shoot), 1f, shootInterval);
-            InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
-
-        // Subscribe to the Die method of the appropriate health script based on the invader's type
-        if (GetComponent<health>() != null)
-        {
-            GetComponent<health>().killed += OnKilled;
-        }
-        else if (GetComponent<health1>() != null)
-        {
-            GetComponent<health1>().killed += OnKilled;
-        }
-        else
-        {
-            Debug.LogError("No health script found on the invader!");
-        }
-
-    }
-
-  
-
-    private void OnKilled()
-    {
-        // Stop shooting when the invader dies
-        CancelInvoke(nameof(Shoot));
-
-        GameManger.instance.UpdateScore(pointsWorth);
+        // Start shooting automatically when the object is enabled
+        InvokeRepeating(nameof(Shoot), 1f, shootInterval);
+        InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
     }
 
     private void AnimateSprite()
@@ -72,14 +58,6 @@ public class Invader : MonoBehaviour
 
             _spriteRenderer.sprite = animationSprites[_animationFrame];
         }
-    }
-    public void StopActions()
-    {
-        // Stop shooting
-        CancelInvoke(nameof(Shoot));
-
-        // Stop animation
-        CancelInvoke(nameof(AnimateSprite));
     }
 
     private void Shoot()
@@ -99,5 +77,39 @@ public class Invader : MonoBehaviour
 
         // Deactivate the GameObject
         gameObject.SetActive(false);
+        DropRandomBuff();
+    }
+
+
+    // Method to set the movement speed of the invader
+    public void SetMoveSpeed(float moveSpeed)
+    {
+        this.moveSpeed = moveSpeed;
+    }
+
+    private void FixedUpdate()
+    {
+        // Move the invader vertically within the boundaries
+        Vector3 newPosition = transform.position + Vector3.down * moveSpeed * Time.fixedDeltaTime;
+        newPosition.y = Mathf.Clamp(newPosition.y, bottomBoundary.position.y, topBoundary.position.y);
+        transform.position = newPosition;
+    }
+
+    private void DropRandomBuff()
+    {
+        // Check if either possibleBuffs or buffPrefabs is null or empty
+        if (possibleBuffs == null || possibleBuffs.Length == 0 || buffPrefabs == null || buffPrefabs.Length == 0)
+        {
+            Debug.LogWarning("No possible buffs or buff prefabs defined.");
+            return;
+        }
+
+        // Randomly select a buff type
+        int randomIndex = UnityEngine.Random.Range(0, possibleBuffs.Length);
+        BuffSystem.BuffType selectedBuffType = possibleBuffs[randomIndex];
+
+        // Instantiate the corresponding buff prefab
+        GameObject buffPrefab = buffPrefabs[randomIndex];
+        Instantiate(buffPrefab, transform.position, Quaternion.identity);
     }
 }

@@ -14,6 +14,7 @@ TagManager:
   - Missile
   - BottomBoundary
   - TopBoundary
+  - Buff
   layers:
   - Default
   - TransparentFX
@@ -65,4 +66,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 2036318015
+    locked: 0
+  - name: Buff
+    uniqueID: 799953613
     locked: 0
