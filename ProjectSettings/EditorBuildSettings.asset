@@ -21,4 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 241aac6b4712f624b9aa37dcd3e89fad
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: ad8815597d9780b4e8b5132fd3be439e, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 5b8fe049d9c708a43975c722e019f83f, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: a504fe1a5d9b5184298a3e200b47cc6b, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: a6d59f91b0f706d43a8464e6a07f988d, type: 2}

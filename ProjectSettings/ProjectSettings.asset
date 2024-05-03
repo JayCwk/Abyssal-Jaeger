@@ -134,7 +134,10 @@ PlayerSettings:
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
   bundleVersion: 1.0.2
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 7650879743805639295, guid: 5b8fe049d9c708a43975c722e019f83f, type: 2}
+  - {fileID: 11400000, guid: a504fe1a5d9b5184298a3e200b47cc6b, type: 2}
+  - {fileID: 11400000, guid: ad8815597d9780b4e8b5132fd3be439e, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -166,8 +169,8 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 22
-  AndroidTargetSdkVersion: 0
+  AndroidMinSdkVersion: 33
+  AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -721,8 +724,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Abyssal Jaeger
-  metroPackageVersion: 
+  metroPackageName: AbyssalJaeger
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -730,7 +733,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Abyssal Jaeger
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Abyssal Jaeger
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
