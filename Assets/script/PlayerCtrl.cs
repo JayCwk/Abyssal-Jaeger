@@ -33,9 +33,7 @@ public class PlayerCtrl : MonoBehaviour
 
     private bool isTripleShotEnabled = false;
     private bool isShieldEnabled = false;
-    private bool isShieldActive = false;
-    public float shieldDuration = 5f; // Duration of the shield effect
-    public GameObject shieldEffect;
+   
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -162,13 +160,7 @@ public class PlayerCtrl : MonoBehaviour
             Missiles bullet = collision.GetComponent<Missiles>();
             if (bullet != null)
             {
-                // Check if the shield is active
-                if (isShieldActive)
-                {
-                    Debug.Log("Shield is active. No damage taken.");
-                    return; // Exit the method without taking damage
-                }
-
+               
                 Debug.Log("Bullet Damage: " + bullet.Damage);
                 CurrentsharedHealth -= bullet.Damage;
                 Debug.Log("Current Health: " + CurrentsharedHealth);
@@ -211,7 +203,7 @@ public class PlayerCtrl : MonoBehaviour
     public void ActivateShield()
     {
         isShieldEnabled = true;
-        StartCoroutine(ShieldDuration());
+      
     }
 
     public void DisableTripleShot()
@@ -222,18 +214,7 @@ public class PlayerCtrl : MonoBehaviour
     public void DeactivateShield()
     {
         isShieldEnabled = false;
-        isShieldActive = false;
-    }
-
-    IEnumerator ShieldDuration()
-    {
-        isShieldActive = true;
-        Vector3 shieldPoint;
-        shieldPoint = shieldPosition.position;
-        Instantiate(shieldEffect, shieldPoint, shieldPosition.rotation);
-        yield return new WaitForSeconds(shieldDuration); // Set shield duration time
-
-        isShieldActive = false;
+       
     }
 
 
@@ -261,7 +242,6 @@ public class PlayerCtrl : MonoBehaviour
         GameObject projectilePrefabToUse;
         Vector3 shootPointPosition;
         Vector3 shootPointPosition1;
-        Vector3 shootPointPosition2;
 
         if (isTripleShotEnabled)
         {
@@ -269,12 +249,20 @@ public class PlayerCtrl : MonoBehaviour
             projectilePrefabToUse = projectilePrefab;
             shootPointPosition = shootPoint.position;
             shootPointPosition1 = shootPoint1.position;
-            shootPointPosition2 = shootPoint2.position;
             Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
             shootPointPosition = shootPoint.position + new Vector3(1f, 0f, 0f);
-            Instantiate(projectilePrefabToUse, shootPointPosition1, shootPoint1.rotation);
+            Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
             shootPointPosition = shootPoint.position + new Vector3(-1f, 0f, 0f);
-            Instantiate(projectilePrefabToUse, shootPointPosition2, shootPoint2.rotation);
+            Instantiate(projectilePrefabToUse, shootPointPosition1, shootPoint1.rotation);
+        }
+        else if (isShieldEnabled)
+        {
+            // Implement logic to shoot from two shooting points when shield is enabled
+            projectilePrefabToUse = activeShip == ship1 ? projectilePrefab : projectile1Prefab;
+            shootPointPosition = shootPoint.position;
+            shootPointPosition1 = shootPoint1.position;
+            Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
+            Instantiate(projectilePrefabToUse, shootPointPosition1, shootPoint1.rotation);
         }
         else
         {
@@ -284,7 +272,6 @@ public class PlayerCtrl : MonoBehaviour
             Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
         }
     }
-
 }
 
 

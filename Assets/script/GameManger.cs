@@ -11,8 +11,8 @@ public class GameManger : MonoBehaviour
 
     public int score = 0;
     public TextMeshProUGUI scoreText;
-    public GameObject gameOverPanel;
-    public TextMeshProUGUI finalScoreText;
+    
+   
 
     private void Awake()
     {

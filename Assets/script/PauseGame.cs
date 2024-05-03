@@ -1,34 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
-    public GameObject PausingGame;
+    public GameObject settingsPanel; // Renamed variable for clarity
+    public GameObject darkOverlay; // Reference to the dark overlay image
     private bool isPaused = false;
 
     void Start()
     {
-        PausingGame.SetActive(false); // Hide the settings panel initially
+        settingsPanel.SetActive(false); // Hide the settings panel initially
+        if (darkOverlay != null)
+        {
+            darkOverlay.SetActive(false); // Hide the dark overlay initially
+        }
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && isPaused) // Detect if the user presses the escape key
+        if (Input.GetKeyDown(KeyCode.Escape)) // Changed to use KeyCode.Escape for better clarity
         {
-            ToggleSettingsPanel(); // Resume the game if the settings panel is open and the user presses escape
+            ToggleSettingsPanel(); // Toggle the settings panel when the Escape key is pressed
         }
     }
 
     public void ToggleSettingsPanel()
     {
-        if (PausingGame != null)
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0f : 1f; // Pause/unpause the game
+
+        if (settingsPanel != null)
         {
-            isPaused = !isPaused;
-            PausingGame.SetActive(isPaused); // Show/hide the settings panel
-            Time.timeScale = isPaused ? 0f : 1f; // Pause/unpause the game
+            settingsPanel.SetActive(isPaused); // Activate/deactivate the settings panel based on the pause state
+        }
+
+        if (darkOverlay != null)
+        {
+            darkOverlay.SetActive(isPaused); // Activate/deactivate the dark overlay based on the pause state
         }
     }
-
-  
 }
