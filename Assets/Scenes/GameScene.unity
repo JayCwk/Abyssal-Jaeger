@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &30392651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -832,7 +832,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &398105435
@@ -884,8 +884,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 705c2090941fb144b8ed0aabbb972473, type: 3}
   - {fileID: 21300000, guid: 54d60d00a844d2a41a68d37bb170bfbd, type: 3}
   - {fileID: 21300000, guid: f0791c22e7d3fc04eb93c3d4a02ab29d, type: 3}
-  shieldDuration: 5
-  shieldEffect: {fileID: 8735591245966266724, guid: ba9ca3efd28ba074ab280a39f43fbb51, type: 3}
 --- !u!50 &398105437
 Rigidbody2D:
   serializedVersion: 4
