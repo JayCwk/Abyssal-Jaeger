@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossHealth : MonoBehaviour
 {
@@ -20,9 +21,15 @@ public class BossHealth : MonoBehaviour
     private bool isGameActive = true;
     private Coroutine shootingCoroutine;
 
+    public GameObject bleedingEffectPrefab;
+    private Color originalColor;
+    private Color hitColor = Color.black; // Color to indicate hit
+
+    AudioManager audiomg;
+
     private void Start()
     {
-
+        originalColor = spriteRenderer.color;
         // Ensure sprite renderer is assigned
         if (spriteRenderer == null)
         {
@@ -31,6 +38,8 @@ public class BossHealth : MonoBehaviour
         startingHealth = currentHealth;
         // Start shooting beams
         shootingCoroutine = StartCoroutine(ShootBeams());
+
+        audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
     }
     // Coroutine to shoot beams from random shooting points
@@ -108,9 +117,21 @@ public class BossHealth : MonoBehaviour
             if (bullet != null || bullet1 != null)
             {
                 currentHealth -= bullet != null ? bullet.Damage : bullet1.Damage;
+                IndicateHit();
+                ShowBleedingEffect();
+                audiomg.PlaySFX(audiomg.EnemyonHit);
                 GameManger.instance.UpdateScore(pointsGet);
-                if (currentHealth <= 0) Die();
-                else UpdateAnimationFrame();
+                if (currentHealth <= 0)
+                {
+                    Die();
+                    audiomg.PlaySFX(audiomg.EnemyDeath);
+                }
+                else
+                { 
+                    UpdateAnimationFrame(); 
+                }
+            
+                    
             }
         }
     }
@@ -120,5 +141,30 @@ public class BossHealth : MonoBehaviour
         killed?.Invoke();
         gameObject.SetActive(false);
         GameManger.instance.UpdateScore(pointsWorth);
+        SceneManager.LoadSceneAsync(6);
+    }
+
+    private void ShowBleedingEffect()
+    {
+        // Instantiate the bleeding particle effect prefab at the enemy's position
+        Instantiate(bleedingEffectPrefab, transform.position, Quaternion.identity);
+    }
+
+    private void IndicateHit()
+    {
+        // Change color to hit color
+        spriteRenderer.color = hitColor;
+
+        // Reset color back to original after a delay
+        StartCoroutine(ResetColorAfterDelay());
+    }
+
+    private IEnumerator ResetColorAfterDelay()
+    {
+        // Wait for a short duration
+        yield return new WaitForSeconds(0.1f);
+
+        // Reset color back to original
+        spriteRenderer.color = originalColor;
     }
 }

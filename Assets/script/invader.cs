@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites;
+
     public float animationTime = 1.0f;
     private SpriteRenderer _spriteRenderer;
     private int _animationFrame;
@@ -19,6 +21,9 @@ public class Invader : MonoBehaviour
     public float shootForce = 10f;
 
     private bool isAlive = true; // Flag to track if the invader is alive
+
+    public int damage = 1; // Damage value for the invader
+
 
     private Transform bottomBoundary;
     private Transform topBoundary;
@@ -112,4 +117,11 @@ public class Invader : MonoBehaviour
         GameObject buffPrefab = buffPrefabs[randomIndex];
         Instantiate(buffPrefab, transform.position, Quaternion.identity);
     }
+
+    public int GetDamage()
+    {
+        return damage;
+    }
+
+    
 }

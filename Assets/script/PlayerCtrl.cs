@@ -24,6 +24,8 @@ public class PlayerCtrl : MonoBehaviour
     public int StartingsharedHealth = 3; // Shared health value for both ships
     public int CurrentsharedHealth;
 
+    public GameObject ExplosionEffectPrefab;
+
     private SpriteRenderer shipSprite;
     public Sprite[] ship1;
     public Sprite[] ship2;
@@ -33,6 +35,8 @@ public class PlayerCtrl : MonoBehaviour
 
     private bool isTripleShotEnabled = false;
     private bool isShieldEnabled = false;
+
+    AudioManager audiomg;
    
     void Start()
     {
@@ -47,6 +51,8 @@ public class PlayerCtrl : MonoBehaviour
 
         // Start shooting automatically when the object is enabled
         InvokeRepeating("Shoot", 1f, shootInterval);
+
+        audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Call this method when starting a new game
@@ -152,9 +158,15 @@ public class PlayerCtrl : MonoBehaviour
 
     }
 
+    private void ShowBleedingEffect()
+    {
+        // Instantiate the bleeding particle effect prefab at the enemy's position
+        Instantiate(ExplosionEffectPrefab, transform.position, Quaternion.identity);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isAlive && collision.CompareTag("Missile"))
+        if (isAlive && collision.CompareTag("Missile") )
         {
             Debug.Log("Player was hit by a bullet!");
             Missiles bullet = collision.GetComponent<Missiles>();
@@ -163,16 +175,40 @@ public class PlayerCtrl : MonoBehaviour
                
                 Debug.Log("Bullet Damage: " + bullet.Damage);
                 CurrentsharedHealth -= bullet.Damage;
+                ShowBleedingEffect();
+                audiomg.PlaySFX(audiomg.PlayeronHit);
                 Debug.Log("Current Health: " + CurrentsharedHealth);
                 SavePlayerPrefs();
                 if (CurrentsharedHealth <= 0)
                 {
                     Debug.Log("Player died!");
                     Die();
+                    audiomg.PlaySFX(audiomg.Playerdeath);
                 }
             
             }
         
+        }
+
+        if (isAlive && collision.CompareTag("Variant") || collision.CompareTag("Enemy"))
+        {
+            Debug.Log("Player was hit by a invader!");
+            Invader invader = collision.GetComponent<Invader>();
+            if (invader != null)
+            {
+                TakeDamage(invader.GetDamage());
+                audiomg.PlaySFX(audiomg.PlayeronHit);
+                invader.Die(); // Destroy the invader upon collision with the player
+                SavePlayerPrefs();
+                if (CurrentsharedHealth <= 0)
+                {
+                    Debug.Log("Player died!");
+                    Die();
+                    audiomg.PlaySFX(audiomg.Playerdeath);
+                }
+
+            }
+
         }
 
         if (collision.CompareTag("Buff"))
@@ -187,11 +223,25 @@ public class PlayerCtrl : MonoBehaviour
                 // Apply the randomly selected buff to the player
                 buffSystem.ApplyBuff(randomBuffType, 10f); // Adjust duration as needed
                 Destroy(collision.gameObject); // Destroy the buff GameObject
+                audiomg.PlaySFX(audiomg.PowerUp);
             }
             else
             {
                 Debug.LogWarning("BuffSystem not found!");
             }
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        CurrentsharedHealth -= damage;
+        Debug.Log("Player took " + damage + " damage. Current Health: " + CurrentsharedHealth);
+
+        ShowBleedingEffect();
+        if (CurrentsharedHealth <= 0)
+        {
+            
+            Die();
         }
     }
 
@@ -254,6 +304,7 @@ public class PlayerCtrl : MonoBehaviour
             Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
             shootPointPosition = shootPoint.position + new Vector3(-1f, 0f, 0f);
             Instantiate(projectilePrefabToUse, shootPointPosition1, shootPoint1.rotation);
+            audiomg.PlaySFX(audiomg.shoot);
         }
         else if (isShieldEnabled)
         {
@@ -263,13 +314,16 @@ public class PlayerCtrl : MonoBehaviour
             shootPointPosition1 = shootPoint1.position;
             Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
             Instantiate(projectilePrefabToUse, shootPointPosition1, shootPoint1.rotation);
+            audiomg.PlaySFX(audiomg.shoot);
         }
+
         else
         {
             // Implement logic to shoot from the middle shooting point
             projectilePrefabToUse = activeShip == ship1 ? projectilePrefab : projectile1Prefab;
             shootPointPosition = shootPoint.position;
             Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
+            audiomg.PlaySFX(audiomg.shoot);
         }
     }
 }

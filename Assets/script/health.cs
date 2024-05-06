@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class health : MonoBehaviour
 {
@@ -10,11 +12,13 @@ public class health : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    private Color hitColor = Color.red; // Color to indicate hit
+    private Color hitColor = Color.black; // Color to indicate hit
 
     public GameObject bleedingEffectPrefab; // Reference to the bleeding particle effect prefab
     public BuffSystem.BuffType[] possibleBuffs; // Array of possible buff types
     public GameObject[] buffPrefabs; // Array of corresponding buff prefabs
+
+    AudioManager audiomg;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,8 @@ public class health : MonoBehaviour
         // Get the SpriteRenderer component
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // Store original color
+
+        audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Handle damage when colliding with objects
@@ -32,8 +38,11 @@ public class health : MonoBehaviour
         // Check if collided with a bullet
         if (collision.CompareTag("Bullet") || collision.CompareTag("Bullet1"))
         {
+            IndicateHit();
+
             // Get the bullet component
             Bullet bullet = collision.GetComponent<Bullet>();
+
 
             // Check if the bullet component exists
             if (bullet != null)
@@ -45,15 +54,18 @@ public class health : MonoBehaviour
                 if (currentHealth <= 0)
                 {
                     Die(); // Die if health reaches zero or less
+                    audiomg.PlaySFX(audiomg.EnemyDeath);
                 }
                 else
                 {
                     // Show bleeding particle effect if bullet deals damage
                     // Call a method to show bleeding effect on the enemy
                     ShowBleedingEffect();
+                    audiomg.PlaySFX(audiomg.EnemyonHit);
                 }
             }
         }
+        
 
     }
 
@@ -64,12 +76,17 @@ public class health : MonoBehaviour
         Instantiate(bleedingEffectPrefab, transform.position, Quaternion.identity);
     }
 
-    // Coroutine to indicate hit by changing color
-    private System.Collections.IEnumerator IndicateHit()
+    private void IndicateHit()
     {
         // Change color to hit color
         spriteRenderer.color = hitColor;
 
+        // Reset color back to original after a delay
+        StartCoroutine(ResetColorAfterDelay());
+    }
+
+    private IEnumerator ResetColorAfterDelay()
+    {
         // Wait for a short duration
         yield return new WaitForSeconds(0.1f);
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -10,6 +11,8 @@ public class GameOverManager : MonoBehaviour
 {
     public TextMeshProUGUI finalScoreText;
     public TextMeshProUGUI cryptoCurrency;
+
+    AudioManager audiomg;
 
     void Start()
     {
@@ -33,6 +36,8 @@ public class GameOverManager : MonoBehaviour
 
         // Display the total cryptocurrency value
         cryptoCurrency.text = "Crypto earn: " + savedCryptoValue.ToString("F2");
+
+        audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void SaveCryptoCurrency(float value)
@@ -56,12 +61,14 @@ public class GameOverManager : MonoBehaviour
     // Method to go back to the main menu or home screen
     public void Home()
     {
+        audiomg.PlaySFX(audiomg.OnClicked);
         SceneManager.LoadScene("Start"); // Load your main menu scene here
     }
 
     // Method to replay the game
     public void Replay()
     {
+        audiomg.PlaySFX(audiomg.OnClicked);
         // Reset specific keys relevant to player preferences
         PlayerPrefs.DeleteKey("PlayerSharedHealth");
         

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,8 @@ public class PauseGame : MonoBehaviour
     public GameObject darkOverlay; // Reference to the dark overlay image
     private bool isPaused = false;
 
+    AudioManager audiomg;
+
     void Start()
     {
         settingsPanel.SetActive(false); // Hide the settings panel initially
@@ -17,6 +20,8 @@ public class PauseGame : MonoBehaviour
         {
             darkOverlay.SetActive(false); // Hide the dark overlay initially
         }
+
+        audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -31,6 +36,7 @@ public class PauseGame : MonoBehaviour
     {
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0f : 1f; // Pause/unpause the game
+        audiomg.PlaySFX(audiomg.Pause);
 
         if (settingsPanel != null)
         {

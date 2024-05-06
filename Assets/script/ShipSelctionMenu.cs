@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class ShipSelctionMenu : MonoBehaviour
@@ -22,6 +23,15 @@ public class ShipSelctionMenu : MonoBehaviour
 
     private int currentColorIndex = 0; // Index of the current color
 
+    AudioManager audiomg;
+
+    private void Start()
+    {
+        audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        // Display the first ship color as default preview
+        UpdateShipPreview();
+    }
+
     // Called when the player presses a button to change ship color
     public void OnChangeColorButtonPressed()
     {
@@ -35,6 +45,7 @@ public class ShipSelctionMenu : MonoBehaviour
         currentColorIndex = (currentColorIndex + 1) % colorOptions.Length;
 
         Debug.Log("Current color index: " + currentColorIndex);
+        audiomg.PlaySFX(audiomg.OnClicked);
         UpdateShipPreview();
     }
 
@@ -53,8 +64,11 @@ public class ShipSelctionMenu : MonoBehaviour
 
     public void SaveShipColor()
     {
+        
         // Get the current color of the ship material
         Color color = shipMaterial.color;
+
+        audiomg.PlaySFX(audiomg.OnClicked);
         // Save the ship color to PlayerPrefs
         PlayerPrefs.SetFloat("ShipColor_R", color.r);
         PlayerPrefs.SetFloat("ShipColor_G", color.g);
@@ -62,9 +76,4 @@ public class ShipSelctionMenu : MonoBehaviour
         PlayerPrefs.SetFloat("ShipColor_A", color.a);
     }
 
-    void Start()
-    {
-        // Display the first ship color as default preview
-        UpdateShipPreview();
-    }
 }

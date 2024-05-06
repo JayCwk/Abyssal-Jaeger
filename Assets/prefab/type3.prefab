@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   startingHealth: 1
-  bleedingEffectPrefab: {fileID: 0}
+  bleedingEffectPrefab: {fileID: 2482890617145725436, guid: 216870201bb31ad479ea22e66985ebb1, type: 3}
   possibleBuffs: 01000000
   buffPrefabs:
   - {fileID: 8473691978131351366, guid: 73fa19f7e2d24c04892e062392fcd856, type: 3}
