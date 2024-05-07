@@ -20,7 +20,7 @@ public class GameOverManager : MonoBehaviour
         int score = GameManger.instance.score;
 
         // Calculate the cryptocurrency value
-        float cryptocurrencyValue = score * 0.02f;
+        float cryptocurrencyValue = score * 0.002f;
 
         // Load the saved cryptocurrency value
         float savedCryptoValue = LoadCryptoCurrency();
@@ -35,7 +35,7 @@ public class GameOverManager : MonoBehaviour
         finalScoreText.text = "Final Score: " + score.ToString();
 
         // Display the total cryptocurrency value
-        cryptoCurrency.text = "Crypto earn: " + savedCryptoValue.ToString("F2");
+        cryptoCurrency.text = "Crypto earn: " + cryptocurrencyValue.ToString("F2");
 
         audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }

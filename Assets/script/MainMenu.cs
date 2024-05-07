@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        PlayerCtrl.ResetPlayerPrefs();
         audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     public void PlayGame()
@@ -30,7 +31,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        
+        PlayerCtrl.ResetPlayerPrefs();
         Application.Quit();
     }
 }

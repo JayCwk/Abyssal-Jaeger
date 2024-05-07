@@ -33,7 +33,7 @@ TagManager:
   - far
   - foreground
   - front
-  - 
+  - Icon
   - 
   - 
   - 
@@ -73,4 +73,7 @@ TagManager:
     locked: 0
   - name: Effects
     uniqueID: 231036411
+    locked: 0
+  - name: UI
+    uniqueID: 1490212071
     locked: 0
