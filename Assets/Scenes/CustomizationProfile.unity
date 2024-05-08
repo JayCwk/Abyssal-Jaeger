@@ -198,6 +198,14 @@ PrefabInstance:
       propertyPath: OnClicked
       value: 
       objectReference: {fileID: 8300000, guid: 6d18745678bbc1b46955fda13d583e3f, type: 3}
+    - target: {fileID: 6323242384778770612, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -7163614297131790120, guid: 6a44a1bc15724854c9530980a83b9726, type: 2}
+    - target: {fileID: 9197838438619566767, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4916052925577913633, guid: 6a44a1bc15724854c9530980a83b9726, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
