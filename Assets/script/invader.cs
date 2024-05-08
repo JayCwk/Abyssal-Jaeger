@@ -83,6 +83,7 @@ public class Invader : MonoBehaviour
         // Deactivate the GameObject
         gameObject.SetActive(false);
         DropRandomBuff();
+        GameManger.instance.UpdateScore(pointsWorth);
     }
 
 

@@ -266,3 +266,4 @@ MonoBehaviour:
   possibleBuffs: 01000000
   buffPrefabs:
   - {fileID: 8473691978131351366, guid: 73fa19f7e2d24c04892e062392fcd856, type: 3}
+  pointsWorth: 3

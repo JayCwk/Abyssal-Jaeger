@@ -256,6 +256,7 @@ MonoBehaviour:
   bleedingEffectPrefab: {fileID: 2482890617145725436, guid: 216870201bb31ad479ea22e66985ebb1, type: 3}
   possibleBuffs: 
   buffPrefabs: []
+  pointsWorth: 2
 --- !u!4 &6809007812591952778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}

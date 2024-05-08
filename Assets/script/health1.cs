@@ -19,6 +19,7 @@ public class health1 : MonoBehaviour
     public GameObject[] buffPrefabs; // Array of corresponding buff prefabs
 
     AudioManager audiomg;
+    public int pointsWorth;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,7 @@ public class health1 : MonoBehaviour
                 {
                     Die(); // Die if health reaches zero or less
                     audiomg.PlaySFX(audiomg.EnemyDeath);
+                    GameManger.instance.UpdateScore(pointsWorth);
                 }
                 else
                 {

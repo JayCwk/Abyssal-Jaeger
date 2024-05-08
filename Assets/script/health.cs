@@ -19,6 +19,8 @@ public class health : MonoBehaviour
     public GameObject[] buffPrefabs; // Array of corresponding buff prefabs
 
     AudioManager audiomg;
+    public int pointsWorth; // Points awarded for destroying this invader
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +57,7 @@ public class health : MonoBehaviour
                 {
                     Die(); // Die if health reaches zero or less
                     audiomg.PlaySFX(audiomg.EnemyDeath);
+
                 }
                 else
                 {
@@ -104,6 +107,8 @@ public class health : MonoBehaviour
         Destroy(gameObject);
 
         DropRandomBuff();
+
+        GameManger.instance.UpdateScore(pointsWorth);
     }
 
     // Method to drop a random buff

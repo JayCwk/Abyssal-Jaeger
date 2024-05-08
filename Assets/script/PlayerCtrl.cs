@@ -302,6 +302,7 @@ public class PlayerCtrl : MonoBehaviour
             shootPointPosition1 = shootPoint1.position;
             shootPointPosition2 = shootPoint2.position;
 
+            projectilePrefabToUse = activeShip == ship1 ? projectilePrefab : projectile1Prefab;
             Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
             Instantiate(projectilePrefabToUse, shootPointPosition1, shootPoint1.rotation);
             Instantiate(projectilePrefabToUse, shootPointPosition2, shootPoint2.rotation);

@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     {
         PlayerCtrl.ResetPlayerPrefs();
         audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        showCrytpoEarn();
     }
     public void PlayGame()
     {
@@ -42,12 +43,12 @@ public class MainMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("CryptoCurrency"))
         {
             float cryptoEarned = PlayerPrefs.GetFloat("CryptoCurrency");
-            coinEarn.text = cryptoEarned.ToString(); // Update the text component with the earned cryptocurrency
+            coinEarn.text = "Crypto: "+cryptoEarned.ToString(); // Update the text component with the earned cryptocurrency
             return cryptoEarned;
         }
         else
         {
-            coinEarn.text = "0"; // Update the text component with 0 if the key doesn't exist
+            coinEarn.text = "Crypto: 0"; // Update the text component with 0 if the key doesn't exist
             return 0f; // Default value if the key doesn't exist
         }
     }
