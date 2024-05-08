@@ -35,7 +35,7 @@ public class GameOverManager : MonoBehaviour
         finalScoreText.text = "Final Score: " + score.ToString();
 
         // Display the total cryptocurrency value
-        cryptoCurrency.text = "Crypto earn: " + cryptocurrencyValue.ToString("F2");
+        cryptoCurrency.text = "CC earned: " + cryptocurrencyValue.ToString("F2");
 
         audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
