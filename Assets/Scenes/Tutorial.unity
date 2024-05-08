@@ -2368,6 +2368,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: aa1e98d14d191af43b9278c28224e1b9, type: 3}
     - target: {fileID: 6058441681157769793, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
+      propertyPath: shoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 3851f7c1941eac043b81e6293c9d6b2a, type: 3}
+    - target: {fileID: 6058441681157769793, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
+      propertyPath: Background
+      value: 
+      objectReference: {fileID: 8300000, guid: fcc25dea23b663a4b8849255118e5f58, type: 3}
+    - target: {fileID: 6058441681157769793, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
       propertyPath: EnemyDeath
       value: 
       objectReference: {fileID: 8300000, guid: 33b373f97bb4469459598838fb2efeb4, type: 3}
@@ -2378,7 +2386,7 @@ PrefabInstance:
     - target: {fileID: 6058441681157769793, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
       propertyPath: MusicSource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1392479484}
     - target: {fileID: 6323242384778770612, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -2392,6 +2400,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
+--- !u!82 &1392479484 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9197838438619566767, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
+  m_PrefabInstance: {fileID: 1392479483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1595811830
 GameObject:
   m_ObjectHideFlags: 0
