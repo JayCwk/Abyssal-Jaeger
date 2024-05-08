@@ -18,13 +18,13 @@ public class ReplayButton : MonoBehaviour
     {
         audiomg.PlaySFX(audiomg.OnClicked);
         SceneManager.LoadScene(gameSceneName); // Load the game scene again
-        PlayerCtrl.ResetPlayerPrefs();
+        PlayerPrefs.DeleteKey("PlayerSharedHealth");
     }
 
     public void HomeGame()
     {
         audiomg.PlaySFX(audiomg.Cancel);
         SceneManager.LoadScene(gameSceneName1); // Load the game scene again
-        PlayerCtrl.ResetPlayerPrefs();
+        PlayerPrefs.DeleteKey("PlayerSharedHealth");
     }
 }

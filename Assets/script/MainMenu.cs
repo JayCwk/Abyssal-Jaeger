@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        PlayerCtrl.ResetPlayerPrefs();
+        //PlayerCtrl.ResetPlayerPrefs();
         audiomg = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         showCrytpoEarn();
     }
@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame1()
     {
-        
+        PlayerPrefs.DeleteKey("PlayerSharedHealth");
         SceneManager.LoadSceneAsync(2);
     }
     public void PlayCustomizationProfile()
