@@ -63,7 +63,7 @@ public class SkipTutorial : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         audioSource.PlaySFX(audioSource.Pause);
-        PlayerCtrl.ResetPlayerPrefs();
+        PlayerPrefs.DeleteKey("PlayerSharedHealth");
         SceneManager.LoadScene("Start"); // Load main menu scene 
     }
 }
