@@ -37,7 +37,7 @@ public class PlayerCtrl : MonoBehaviour
     private bool isShieldEnabled = false;
 
     AudioManager audiomg;
-   
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -166,13 +166,13 @@ public class PlayerCtrl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isAlive && collision.CompareTag("Missile") )
+        if (isAlive && collision.CompareTag("Missile"))
         {
             Debug.Log("Player was hit by a bullet!");
             Missiles bullet = collision.GetComponent<Missiles>();
             if (bullet != null)
             {
-               
+
                 Debug.Log("Bullet Damage: " + bullet.Damage);
                 CurrentsharedHealth -= bullet.Damage;
                 ShowBleedingEffect();
@@ -185,9 +185,9 @@ public class PlayerCtrl : MonoBehaviour
                     Die();
                     audiomg.PlaySFX(audiomg.Playerdeath);
                 }
-            
+
             }
-        
+
         }
 
         if (isAlive && collision.CompareTag("Variant") || collision.CompareTag("Enemy"))
@@ -240,7 +240,7 @@ public class PlayerCtrl : MonoBehaviour
         ShowBleedingEffect();
         if (CurrentsharedHealth <= 0)
         {
-            
+
             Die();
         }
     }
@@ -253,7 +253,7 @@ public class PlayerCtrl : MonoBehaviour
     public void ActivateShield()
     {
         isShieldEnabled = true;
-      
+
     }
 
     public void DisableTripleShot()
@@ -264,7 +264,7 @@ public class PlayerCtrl : MonoBehaviour
     public void DeactivateShield()
     {
         isShieldEnabled = false;
-       
+
     }
 
 
@@ -292,6 +292,7 @@ public class PlayerCtrl : MonoBehaviour
         GameObject projectilePrefabToUse;
         Vector3 shootPointPosition;
         Vector3 shootPointPosition1;
+        Vector3 shootPointPosition2;
 
         if (isTripleShotEnabled)
         {
@@ -299,30 +300,34 @@ public class PlayerCtrl : MonoBehaviour
             projectilePrefabToUse = projectilePrefab;
             shootPointPosition = shootPoint.position;
             shootPointPosition1 = shootPoint1.position;
+            shootPointPosition2 = shootPoint2.position;
+
             Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
-            shootPointPosition = shootPoint.position + new Vector3(1f, 0f, 0f);
-            Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
-            shootPointPosition = shootPoint.position + new Vector3(-1f, 0f, 0f);
             Instantiate(projectilePrefabToUse, shootPointPosition1, shootPoint1.rotation);
+            Instantiate(projectilePrefabToUse, shootPointPosition2, shootPoint2.rotation);
+
             audiomg.PlaySFX(audiomg.shoot);
         }
         else if (isShieldEnabled)
         {
             // Implement logic to shoot from two shooting points when shield is enabled
             projectilePrefabToUse = activeShip == ship1 ? projectilePrefab : projectile1Prefab;
-            shootPointPosition = shootPoint.position;
             shootPointPosition1 = shootPoint1.position;
-            Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
+            shootPointPosition2 = shootPoint2.position;
+
             Instantiate(projectilePrefabToUse, shootPointPosition1, shootPoint1.rotation);
+            Instantiate(projectilePrefabToUse, shootPointPosition2, shootPoint2.rotation);
+
             audiomg.PlaySFX(audiomg.shoot);
         }
-
         else
         {
             // Implement logic to shoot from the middle shooting point
             projectilePrefabToUse = activeShip == ship1 ? projectilePrefab : projectile1Prefab;
             shootPointPosition = shootPoint.position;
+
             Instantiate(projectilePrefabToUse, shootPointPosition, shootPoint.rotation);
+
             audiomg.PlaySFX(audiomg.shoot);
         }
     }
