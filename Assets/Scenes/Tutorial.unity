@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -671,8 +671,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 166}
-  m_SizeDelta: {x: 1238.4775, y: 414.6635}
+  m_AnchoredPosition: {x: 0.0000019073, y: 114.06}
+  m_SizeDelta: {x: 773.2, y: 228.1136}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &334300985
 MonoBehaviour:
@@ -696,7 +696,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 79197ecfbc3a4294a89ce589dac02cf2, type: 3}
-    m_FontSize: 111
+    m_FontSize: 72
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1115,7 +1115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &581547191
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1136,8 +1136,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 118.80908}
-  m_SizeDelta: {x: 0, y: -1549.2719}
+  m_AnchoredPosition: {x: 0, y: 47.5172}
+  m_SizeDelta: {x: 0, y: -810.9532}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &581547192
 MonoBehaviour:
@@ -1537,7 +1537,7 @@ RectTransform:
   m_GameObject: {fileID: 827331752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 581547191}
@@ -1545,7 +1545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 285, y: -370}
+  m_AnchoredPosition: {x: 182, y: -248}
   m_SizeDelta: {x: 210, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &827331754
@@ -1845,7 +1845,7 @@ RectTransform:
   m_GameObject: {fileID: 997157721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 581547191}
@@ -1853,7 +1853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320, y: -370}
+  m_AnchoredPosition: {x: -183, y: -248}
   m_SizeDelta: {x: 210, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &997157723
@@ -2375,6 +2375,10 @@ PrefabInstance:
       propertyPath: EnemyonHit
       value: 
       objectReference: {fileID: 8300000, guid: 80f20925298815d4595fc77cb3934d3e, type: 3}
+    - target: {fileID: 6058441681157769793, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
+      propertyPath: MusicSource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6323242384778770612, guid: 748308f2f3387ef44a8a7609edd68800, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -3646,11 +3650,11 @@ RectTransform:
   m_Father: {fileID: 178536918}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 445.18665, y: 1420.48}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -37, y: -52}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1734369172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3894,7 +3898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4782cf42f2644447b9631f6e522160b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 1
+  volume: 0.5
   loop: 1
   targetAudioSource: {fileID: 0}
   audioMode: 0
@@ -4272,7 +4276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4782cf42f2644447b9631f6e522160b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 1
+  volume: 0.5
   loop: 1
   targetAudioSource: {fileID: 0}
   audioMode: 0
