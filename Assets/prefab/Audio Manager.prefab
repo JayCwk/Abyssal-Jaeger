@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 2117312216171864223}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4916052925577913633, guid: 6a44a1bc15724854c9530980a83b9726, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -160,7 +160,7 @@ Transform:
   - {fileID: 1377760168071876279}
   - {fileID: 1109168792917341590}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6058441681157769793
 MonoBehaviour:
@@ -182,6 +182,10 @@ MonoBehaviour:
   EnemyonHit: {fileID: 0}
   Playerdeath: {fileID: 0}
   EnemyDeath: {fileID: 0}
+  PowerUp: {fileID: 0}
+  Pause: {fileID: 0}
+  OnClicked: {fileID: 0}
+  Cancel: {fileID: 0}
 --- !u!1 &6040419407226062634
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +227,7 @@ AudioSource:
   m_GameObject: {fileID: 6040419407226062634}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7163614297131790120, guid: 6a44a1bc15724854c9530980a83b9726, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
