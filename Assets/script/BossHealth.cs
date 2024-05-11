@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BossHealth : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class BossHealth : MonoBehaviour
     public Transform[] shootingPoints;
     public GameObject beamPrefab1;
     public GameObject beamPrefab2;
+    public GameObject[] point;
     public float fixedTimeIntervals = 3f;
     public int pointsWorth; // Points awarded for destroying this boss
     public int pointsGet; // Points awarded for hitting this boss
@@ -157,6 +159,8 @@ public class BossHealth : MonoBehaviour
 
         // Reset color back to original after a delay
         StartCoroutine(ResetColorAfterDelay());
+        //display the point earned
+        StartCoroutine(pointTxt());
     }
 
     private IEnumerator ResetColorAfterDelay()
@@ -166,5 +170,30 @@ public class BossHealth : MonoBehaviour
 
         // Reset color back to original
         spriteRenderer.color = originalColor;
+    }
+
+    void shufflePosition(GameObject[] position)
+    {
+        //shuffle the values in the array
+        for (int i = position.Length - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+            GameObject temp = position[i];
+            position[i] = position[randomIndex];
+            position[randomIndex] = temp;
+        }
+    }
+    private IEnumerator pointTxt()
+    {
+        shufflePosition(point);
+
+        // display the point value
+        point[0].SetActive(true);
+
+        // Wait for 1 second
+        yield return new WaitForSeconds(1f);
+
+        // hide point value
+        point[0].SetActive(false);
     }
 }
