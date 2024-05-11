@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class Invader : MonoBehaviour
@@ -32,6 +34,9 @@ public class Invader : MonoBehaviour
     public BuffSystem.BuffType[] possibleBuffs; // Array of possible buff types
     public GameObject[] buffPrefabs; // Array of corresponding buff prefabs
 
+    public TextMeshProUGUI pointsWorthText;
+    public GameObject pointsTextPrefab; // Reference to the prefab of the points worth text object
+
     // Method to set the boundaries
     public void SetBoundaries(Transform bottomBoundary, Transform topBoundary)
     {
@@ -49,6 +54,7 @@ public class Invader : MonoBehaviour
         // Start shooting automatically when the object is enabled
         InvokeRepeating(nameof(Shoot), 1f, shootInterval);
         InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
+        
     }
 
     private void AnimateSprite()
@@ -80,12 +86,11 @@ public class Invader : MonoBehaviour
     {
         isAlive = false;
 
-        // Deactivate the GameObject
-        gameObject.SetActive(false);
+
         DropRandomBuff();
         GameManger.instance.UpdateScore(pointsWorth);
     }
-
+   
 
     // Method to set the movement speed of the invader
     public void SetMoveSpeed(float moveSpeed)

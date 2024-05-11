@@ -74,4 +74,8 @@ public class GameOverManager : MonoBehaviour
         
         SceneManager.LoadScene("GameScene"); // Load your game scene here
     }
+
+   
 }
+
+

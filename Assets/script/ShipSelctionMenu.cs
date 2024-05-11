@@ -10,15 +10,13 @@ public class ShipSelctionMenu : MonoBehaviour
     public Material shipMaterial; // Reference to the ship's material
 
     private Color[] colorOptions = {
-        new Color(0, 0, 1),     // Blue
-        new Color(1, 0, 1),     // Pink
-        new Color(0, 1, 0),     // Green
-        new Color(1, 1, 1),     // White
-        new Color(1, 0, 0),     // Red
-        new Color(1, 1, 0),     // Yellow
-        new Color(1, 0.5f, 0),  // Orange
-        new Color(0.6f, 0.3f, 0),  // Brown
-        new Color(0.5f, 0, 0.5f)   // Purple
+
+        new Color(0.5529f, 0.9716981f, 0.2236739f), // light green
+        new Color(0.9716981f, 0.6453542f, 0.8390517f), // light pink (normalized RGB values)
+        new Color(1f, 1f, 1f),                  // White
+        new Color(0.9245283f, 0.80491f, 0.3087575f),                  // Yellow
+        new Color(0.9622642f, 0.7302364f, 0.3395158f)                 // Orange
+        
     }; // Array of predefined colors
 
     private int currentColorIndex = 0; // Index of the current color
