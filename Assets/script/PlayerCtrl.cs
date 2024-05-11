@@ -309,7 +309,7 @@ public class PlayerCtrl : MonoBehaviour
 
             audiomg.PlaySFX(audiomg.shoot);
         }
-        else if (isShieldEnabled)
+        else if (isShieldEnabled) //changed to double shot
         {
             // Implement logic to shoot from two shooting points when shield is enabled
             projectilePrefabToUse = activeShip == ship1 ? projectilePrefab : projectile1Prefab;
