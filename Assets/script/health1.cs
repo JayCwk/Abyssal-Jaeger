@@ -20,7 +20,10 @@ public class health1 : MonoBehaviour
 
     AudioManager audiomg;
     public int pointsWorth;
+    public GameObject pointsSpritePrefab; // Reference to the prefab of the points sprite object
+    public float pointsSpriteDuration = 0.5f; // Duration for which the points sprite will be visible
 
+    public Transform pointsSpriteSpawnPoint; // Public variable for the spawn point of the points sprite
     // Start is called before the first frame update
     void Start()
     {
@@ -54,20 +57,25 @@ public class health1 : MonoBehaviour
                 if (currentHealth <= 0)
                 {
                     Die(); // Die if health reaches zero or less
-                    audiomg.PlaySFX(audiomg.EnemyDeath);
-                    GameManger.instance.UpdateScore(pointsWorth);
-                }
-                else
-                {
-                    // Show bleeding particle effect if bullet deals damage
-                    // Call a method to show bleeding effect on the enemy
-                    ShowBleedingEffect();
-                    audiomg.PlaySFX(audiomg.EnemyonHit);
+                    if (pointsSpritePrefab != null && pointsSpriteSpawnPoint != null)
+                    {
+                        GameObject pointsSprite = Instantiate(pointsSpritePrefab, pointsSpriteSpawnPoint.position, Quaternion.identity);
+                        Destroy(pointsSprite, pointsSpriteDuration);
+                        audiomg.PlaySFX(audiomg.EnemyDeath);
+                        GameManger.instance.UpdateScore(pointsWorth);
+                    }
+                    else
+                    {
+                        // Show bleeding particle effect if bullet deals damage
+                        // Call a method to show bleeding effect on the enemy
+                        ShowBleedingEffect();
+                        audiomg.PlaySFX(audiomg.EnemyonHit);
+                    }
                 }
             }
-        }
 
-      
+
+        }
     }
 
     // Method to show bleeding effect (replace with your own implementation)

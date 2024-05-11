@@ -37,6 +37,11 @@ public class Invader : MonoBehaviour
     public TextMeshProUGUI pointsWorthText;
     public GameObject pointsTextPrefab; // Reference to the prefab of the points worth text object
 
+
+    public GameObject pointsSpritePrefab; // Reference to the prefab of the points sprite object
+    public float pointsSpriteDuration = 0.5f; // Duration for which the points sprite will be visible
+
+    
     // Method to set the boundaries
     public void SetBoundaries(Transform bottomBoundary, Transform topBoundary)
     {
@@ -86,6 +91,9 @@ public class Invader : MonoBehaviour
     {
         isAlive = false;
 
+        Debug.Log("Invader died!"); // Check if this message appears in the console
+
+    
 
         DropRandomBuff();
         GameManger.instance.UpdateScore(pointsWorth);

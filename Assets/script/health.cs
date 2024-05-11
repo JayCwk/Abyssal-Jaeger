@@ -20,8 +20,10 @@ public class health : MonoBehaviour
 
     AudioManager audiomg;
     public int pointsWorth; // Points awarded for destroying this invader
+    public GameObject pointsSpritePrefab; // Reference to the prefab of the points sprite object
+    public float pointsSpriteDuration = 0.5f; // Duration for which the points sprite will be visible
 
-
+    public Transform pointsSpriteSpawnPoint; // Public variable for the spawn point of the points sprite
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +58,12 @@ public class health : MonoBehaviour
                 if (currentHealth <= 0)
                 {
                     Die(); // Die if health reaches zero or less
+                           // Spawn the points sprite at the specified spawn point
+                    if (pointsSpritePrefab != null && pointsSpriteSpawnPoint != null)
+                    {
+                        GameObject pointsSprite = Instantiate(pointsSpritePrefab, pointsSpriteSpawnPoint.position, Quaternion.identity);
+                        Destroy(pointsSprite, pointsSpriteDuration);
+                    }
                     audiomg.PlaySFX(audiomg.EnemyDeath);
 
                 }

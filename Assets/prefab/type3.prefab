@@ -269,6 +269,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7693130513822733412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5503674256379549556}
+  m_Layer: 9
+  m_Name: sp
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5503674256379549556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693130513822733412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.262, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 599707299617035657}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3615461460542196069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,6 +336,10 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 9018146163093163696, guid: 5bfd2d08113f5164bb162774b93de9f8, type: 3}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: pointsSpritePrefab
+      value: 
+      objectReference: {fileID: 3163649563553752713, guid: 71c0769112193184a956f9e335414a5a, type: 3}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: buffPrefabs.Array.size
       value: 2
@@ -478,6 +513,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5708947635171896689}
+    - targetCorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5503674256379549556}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8205332069888541229, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       insertIndex: -1
@@ -511,4 +549,7 @@ MonoBehaviour:
   possibleBuffs: 01000000
   buffPrefabs:
   - {fileID: 8473691978131351366, guid: 73fa19f7e2d24c04892e062392fcd856, type: 3}
-  pointsWorth: 3
+  pointsWorth: 1
+  pointsSpritePrefab: {fileID: 3163649563553752713, guid: 71c0769112193184a956f9e335414a5a, type: 3}
+  pointsSpriteDuration: 0.5
+  pointsSpriteSpawnPoint: {fileID: 5503674256379549556}

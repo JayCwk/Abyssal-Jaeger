@@ -166,6 +166,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5168842116624737744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2390288732224947077}
+  m_Layer: 9
+  m_Name: sp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2390288732224947077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5168842116624737744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6018022872938243132}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6565062049895656365
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +336,10 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 9018146163093163696, guid: 5bfd2d08113f5164bb162774b93de9f8, type: 3}
+    - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      propertyPath: pointsSpritePrefab
+      value: 
+      objectReference: {fileID: 1452100156633815737, guid: f7352af6117b2f342965fac2e70c416d, type: 3}
     - target: {fileID: -2559110997842711737, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       propertyPath: animationSprites.Array.size
       value: 3
@@ -474,6 +509,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       insertIndex: -1
       addedObject: {fileID: 227743341291268163}
+    - targetCorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2390288732224947077}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8205332069888541229, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
       insertIndex: -1
@@ -501,7 +539,10 @@ MonoBehaviour:
   bleedingEffectPrefab: {fileID: 2482890617145725436, guid: 216870201bb31ad479ea22e66985ebb1, type: 3}
   possibleBuffs: 
   buffPrefabs: []
-  pointsWorth: 3
+  pointsWorth: 2
+  pointsSpritePrefab: {fileID: 1452100156633815737, guid: f7352af6117b2f342965fac2e70c416d, type: 3}
+  pointsSpriteDuration: 0.5
+  pointsSpriteSpawnPoint: {fileID: 2390288732224947077}
 --- !u!4 &6018022872938243132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4214847629124328684, guid: 8ae9f2c7a30ce344b8b8f4fbe223f2af, type: 3}
